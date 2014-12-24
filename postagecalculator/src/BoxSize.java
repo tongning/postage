@@ -27,6 +27,7 @@ public class BoxSize extends JPanel{
 //		
 //		f.setVisible(true);
 //	}
+	//
 	
 
 
