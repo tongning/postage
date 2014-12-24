@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 /*
  * @author Karina Chang, Anthony Li
+ * new change
  */
 
 public class MainScreen extends JPanel{
