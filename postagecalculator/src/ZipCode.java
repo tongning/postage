@@ -76,7 +76,7 @@ public class ZipCode extends JPanel {
 		add(backForward,BorderLayout.SOUTH);
 		
 
-		//action listener for forward screens
+		//action listener for forward screens 
 		ActionListener clickForward=new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				//System.out.println("You are "+e.getActionCommand());
