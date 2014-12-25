@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 
 /*
  * @author Karina Chang, Anthony Li
- * 
+ * trying to make changes
  */
 
 public class MainScreen extends JPanel{
