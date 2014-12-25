@@ -1,5 +1,3 @@
-
-
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -8,9 +6,12 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+
+
 /*
  * @author Karina Chang, Anthony Li
- * 
+ * trying to make changes
  */
 
 public class MainScreen extends JPanel{
