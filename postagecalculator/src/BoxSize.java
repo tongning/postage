@@ -94,14 +94,24 @@ public class BoxSize extends JPanel{
 		};
 		back.addActionListener(clickBackward);
 		
+		medboxbutton.setActionCommand("medium");
+		largeboxbutton.setActionCommand("large");
 		//action listener for the sizes, both go to the final screen with different calculations
 		ActionListener largeMedium=new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				//System.out.println("You are "+e.getActionCommand());
+				System.out.println("You are "+e.getActionCommand());
+				if(e.getActionCommand().equals("large")){
+					linkApp.setBoxType(2);
+				}
+				else if(e.getActionCommand().equals("medium")){
+					linkApp.setBoxType(1);
+				}
 				linkApp.changeScreen(MainScreen.SCREEN_FINAL, MainScreen.SCREEN_BOXSIZE);
 
 			}
 		};
+		medboxbutton.addActionListener(largeMedium);
+		largeboxbutton.addActionListener(largeMedium);
 	}
 
 

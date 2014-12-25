@@ -19,7 +19,7 @@ public class FinalScreen extends JPanel{
 	private JRadioButton estimate = new JRadioButton("Use SmartEstimate");
 	private JLabel units = new JLabel("lbs  ");
 	private JLabel finalprice= new JLabel("<html><font size='60'>3.56</font></html>");
-	private double pricevar=3.56;
+	private double pricevar=0.00;
 	private MainScreen linkApp;
 	private ArrayList<Integer> previousS=new ArrayList<Integer>();
 	
@@ -49,6 +49,12 @@ public class FinalScreen extends JPanel{
 		c.insets=new Insets(100,140,50,50);
 		c.gridwidth=GridBagConstraints.REMAINDER;
 		c.fill=GridBagConstraints.BOTH;
+		if(linkApp.getBoxType()==2){
+			pricevar=50.00;
+		}
+		else if(linkApp.getBoxType()==1){
+			pricevar=25.00;
+		}
 		finalprice= new JLabel("<html><font size='40'>"+pricevar+"</font></html>");
 		gridbag.setConstraints(finalprice, c);
 		add(finalprice);

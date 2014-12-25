@@ -58,6 +58,16 @@ public class MainScreen extends JPanel{
 	private int zipStart=0;
 	private int zipEnd=0;
 	
+	//flat rate box size, medium or large
+	//0 is undefined, 1 is medium, 2 is large
+	private int boxType=0;
+	
+	public int getBoxType(){
+		return boxType;
+	}
+	public void setBoxType(int newType){
+		boxType=newType;
+	}
 	
 	public static void main(String[] args){
 		
