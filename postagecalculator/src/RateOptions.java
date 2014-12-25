@@ -93,6 +93,7 @@ public class RateGroup extends JPanel{
 		ActionListener clickFlatR=new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				//System.out.println("You are "+e.getActionCommand());
+				linkApp.setShipSpeed(1);
 				linkApp.changeScreen(MainScreen.SCREEN_BOXSIZE, MainScreen.SCREEN_RATE);
 
 			}
@@ -102,7 +103,8 @@ public class RateGroup extends JPanel{
 		ActionListener clickFlatE=new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				//System.out.println("You are "+e.getActionCommand());
-				linkApp.changeScreen(MainScreen.SCREEN_FINAL, MainScreen.SCREEN_RATE);
+				linkApp.setShipSpeed(2);
+				linkApp.changeScreen(MainScreen.SCREEN_BOXSIZE, MainScreen.SCREEN_RATE);
 
 			}
 		};

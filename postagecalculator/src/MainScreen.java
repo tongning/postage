@@ -62,6 +62,18 @@ public class MainScreen extends JPanel{
 	//0 is undefined, 1 is medium, 2 is large
 	private int boxType=0;
 	
+	
+	//flat rate express vs. flat rate regular
+	//0 is undefined, 1 is regular, 2 is express
+	private int shipSpeed=0;
+	
+	public int getShipSpeed(){
+		return shipSpeed;
+	}
+	public void setShipSpeed(int newSpeed){
+		shipSpeed=newSpeed;
+	}
+	
 	public int getBoxType(){
 		return boxType;
 	}

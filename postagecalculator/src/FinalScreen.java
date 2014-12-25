@@ -50,10 +50,16 @@ public class FinalScreen extends JPanel{
 		c.gridwidth=GridBagConstraints.REMAINDER;
 		c.fill=GridBagConstraints.BOTH;
 		if(linkApp.getBoxType()==2){
+			if(linkApp.getShipSpeed()==2)
 			pricevar=50.00;
+			else if(linkApp.getShipSpeed()==1)
+			pricevar=40.00;
 		}
 		else if(linkApp.getBoxType()==1){
+			if(linkApp.getShipSpeed()==2)
 			pricevar=25.00;
+			else if(linkApp.getShipSpeed()==1)
+			pricevar=20.00;
 		}
 		finalprice= new JLabel("<html><font size='40'>"+pricevar+"</font></html>");
 		gridbag.setConstraints(finalprice, c);
