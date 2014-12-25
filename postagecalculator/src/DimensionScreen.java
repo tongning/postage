@@ -217,6 +217,9 @@ public class DimensionScreen extends JPanel {
 		ActionListener clickForward=new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				//System.out.println("You are "+e.getActionCommand());
+				linkApp.setPackHeight(Integer.parseInt(heightbox.getText()));
+				linkApp.setPackWidth(Integer.parseInt(widthbox.getText()));
+				linkApp.setPackLength(Integer.parseInt(lengthbox.getText()));
 				linkApp.changeScreen(MainScreen.SCREEN_ZIP,MainScreen.SCREEN_DIM);
 
 			}//

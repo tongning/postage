@@ -51,6 +51,27 @@ public class MainScreen extends JPanel{
 	private int packLength=0;
 	private int packHeight=0;
 	
+	public int getPackWidth() {
+		return packWidth;
+	}
+	public void setPackWidth(int packWidth) {
+		this.packWidth = packWidth;
+	}
+	public int getPackLength() {
+		return packLength;
+	}
+	public void setPackLength(int packLength) {
+		this.packLength = packLength;
+	}
+	public int getPackHeight() {
+		return packHeight;
+	}
+	public void setPackHeight(int packHeight) {
+		this.packHeight = packHeight;
+	}
+
+
+
 	//postcard/envelope/large envelope weight
 	private double pWeight=0;
 	private String weightUnits="";
