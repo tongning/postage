@@ -68,6 +68,12 @@ public class MainScreen extends JPanel{
 	//0 is undefined, 1 is regular, 2 is express
 	private int shipSpeed=0;
 	
+	public String getTypePackage(){
+		return typePackage;
+	}
+	public void setTypePackage(String newType){
+		typePackage=newType;
+	}
 	public double getWeight(){
 		return pWeight;
 	}

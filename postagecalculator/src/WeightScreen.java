@@ -42,7 +42,10 @@ public class WeightScreen extends JPanel{
 		
 		bg.add(grams);
 		bg.add(pounds);
+		String packtype=linkApp.getTypePackage();
+		System.out.println("br"+packtype);
 		bg.add(estimate);
+		
 		
 		grams.addItemListener(new ItemListener() {
 	         

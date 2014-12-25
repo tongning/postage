@@ -22,7 +22,7 @@ public class ButtonOptions extends JPanel{
 		setLayout(new BorderLayout());
 		
 		instructions=new JLabel("Select an item type:  ");
-		bGroup=new ButtonGroup();
+		bGroup=new ButtonGroup(linkApp);
 		
 		add(instructions,BorderLayout.NORTH);
 		add(bGroup,BorderLayout.CENTER);
@@ -32,10 +32,12 @@ public class ButtonOptions extends JPanel{
 	public class ButtonGroup extends JPanel{
 		private JButton postcard;
 		private JButton envelope;
+		private MainScreen linkApp;
 		private JButton largeEnvelope;
 		private JButton pack; //means package
-		public ButtonGroup(){
+		public ButtonGroup(MainScreen linkToApp){
 			super();
+			linkApp=linkToApp;
 			setFocusable(true);
 			setVisible(true);
 			
@@ -58,6 +60,7 @@ public class ButtonOptions extends JPanel{
 			ActionListener clickPostcard=new ActionListener(){
 				public void actionPerformed(ActionEvent e){
 					System.out.println("You are "+e.getActionCommand());
+					linkApp.setTypePackage(e.getActionCommand());
 					linkApp.changeScreen(MainScreen.SCREEN_WEIGHT,MainScreen.SCREEN_HOME);
 
 				}//
@@ -67,6 +70,7 @@ public class ButtonOptions extends JPanel{
 			ActionListener clickPack=new ActionListener(){
 				public void actionPerformed(ActionEvent e){
 					System.out.println("You are "+e.getActionCommand());
+					linkApp.setTypePackage(e.getActionCommand());
 					linkApp.changeScreen(MainScreen.SCREEN_RATE,MainScreen.SCREEN_HOME);
 
 				}
