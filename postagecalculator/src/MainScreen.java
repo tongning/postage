@@ -56,6 +56,21 @@ public class MainScreen extends JPanel{
 	
 	//zipcodes
 	private int zipStart=0;
+	public int getZipStart() {
+		return zipStart;
+	}
+	public void setZipStart(int zipStart) {
+		this.zipStart = zipStart;
+	}
+	public int getZipEnd() {
+		return zipEnd;
+	}
+	public void setZipEnd(int zipEnd) {
+		this.zipEnd = zipEnd;
+	}
+
+
+
 	private int zipEnd=0;
 	
 	//flat rate box size, medium or large
