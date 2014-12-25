@@ -51,7 +51,7 @@ public class MainScreen extends JPanel{
 	private int packHeight=0;
 	
 	//postcard/envelope/large envelope weight
-	private int pWeight=0;
+	private double pWeight=0;
 	private String weightUnits="";
 	
 	//zipcodes
@@ -67,6 +67,18 @@ public class MainScreen extends JPanel{
 	//0 is undefined, 1 is regular, 2 is express
 	private int shipSpeed=0;
 	
+	public double getWeight(){
+		return pWeight;
+	}
+	public void setWeight(double newWeight){
+		pWeight=newWeight;
+	}
+	public String getWeightUnit(){
+		return weightUnits;
+	}
+	public void setWeightUnit(String newUnit){
+		weightUnits=newUnit;
+	}
 	public int getShipSpeed(){
 		return shipSpeed;
 	}

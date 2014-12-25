@@ -11,6 +11,7 @@ public class WeightScreen extends JPanel{
 	private JRadioButton grams = new JRadioButton("Grams");
 	private JRadioButton pounds = new JRadioButton("Pounds");
 	private JRadioButton estimate = new JRadioButton("Use SmartEstimate");
+	private JTextField weightbox1=null;
 	private JLabel units = new JLabel("lbs  ");
 	private MainScreen linkApp;
 //	public static void main (String[] args){
@@ -95,6 +96,11 @@ public class WeightScreen extends JPanel{
 		ActionListener clickForward=new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				//System.out.println("You are "+e.getActionCommand());
+				
+				//when forward button is clicked, read weight and unit
+				linkApp.setWeightUnit(units.getText().trim());
+				linkApp.setWeight(Double.parseDouble(weightbox1.getText()));
+				
 				linkApp.changeScreen(MainScreen.SCREEN_ZIP,MainScreen.SCREEN_WEIGHT);
 
 			}//
@@ -132,7 +138,7 @@ public class WeightScreen extends JPanel{
 		c.gridwidth=1;
 		c.fill=GridBagConstraints.HORIZONTAL;
 		c.insets=new Insets(50,0,0,0);
-		JTextField weightbox1 = new JTextField();
+		weightbox1 = new JTextField();
 		weightbox1.setPreferredSize(new Dimension(200,30));
 		gridbag.setConstraints(weightbox1, c);
 		add(weightbox1);
