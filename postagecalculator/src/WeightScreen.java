@@ -14,17 +14,18 @@ public class WeightScreen extends JPanel{
 	private JTextField weightbox1=null;
 	private JLabel units = new JLabel("lbs  ");
 	private MainScreen linkApp;
-//	public static void main (String[] args){
-//		JFrame f = new JFrame("Postage Calc");
-//		f.setContentPane(new WeightScreen());
-//		f.setDefaultCloseOperation(3);
-//		f.setDefaultLookAndFeelDecorated(true);
-//		f.pack();
-//		f.setSize(new Dimension(400,600));
-//		
-//		f.setVisible(true);
-//	}
-	
+	private JLabel instructions = new JLabel("Enter weight:");
+	//	public static void main (String[] args){
+	//		JFrame f = new JFrame("Postage Calc");
+	//		f.setContentPane(new WeightScreen());
+	//		f.setDefaultCloseOperation(3);
+	//		f.setDefaultLookAndFeelDecorated(true);
+	//		f.pack();
+	//		f.setSize(new Dimension(400,600));
+	//		
+	//		f.setVisible(true);
+	//	}
+
 	public WeightScreen(MainScreen linkToApp){
 		linkApp=linkToApp;
 		setVisible(true);
@@ -34,21 +35,21 @@ public class WeightScreen extends JPanel{
 		c.gridx=0;
 		c.gridy=0;
 		c.gridwidth=GridBagConstraints.REMAINDER;
-		JLabel instructions = new JLabel("Enter weight:");
+		
 		gridbag.setConstraints(instructions, c);
 		add(instructions);
-		
-		
-		
+
+
+
 		bg.add(grams);
 		bg.add(pounds);
 		String packtype=linkApp.getTypePackage();
 		System.out.println("br"+packtype);
 		bg.add(estimate);
-		
-		
+
+
 		grams.addItemListener(new ItemListener() {
-	         
+
 
 			@Override
 			public void itemStateChanged(ItemEvent e) {
@@ -57,14 +58,14 @@ public class WeightScreen extends JPanel{
 				if(e.getStateChange()==1) {
 					System.out.println("change detected");
 					units.setText("grams  ");
-					
+
 				}
-				
+
 			}           
-	      });
-		
+		});
+
 		pounds.addItemListener(new ItemListener() {
-	         
+
 
 			@Override
 			public void itemStateChanged(ItemEvent e) {
@@ -73,14 +74,14 @@ public class WeightScreen extends JPanel{
 				if(e.getStateChange()==1) {
 					System.out.println("change detected");
 					units.setText("lbs   ");
-					
+
 				}
-				
+
 			}           
-	      });
-		
+		});
+
 		estimate.addItemListener(new ItemListener() {
-	         
+
 
 			@Override
 			public void itemStateChanged(ItemEvent e) {
@@ -89,31 +90,48 @@ public class WeightScreen extends JPanel{
 				if(e.getStateChange()==1) {
 					System.out.println("change detected");
 					units.setText("pages  ");
-					
+
 				}
-				
+
 			}           
-	      });
-		
+		});
+		pounds.setSelected(true);
 		//action listener for forward screens
 		ActionListener clickForward=new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				//System.out.println("You are "+e.getActionCommand());
-				
-				//when forward button is clicked, read weight and unit
-				linkApp.setWeightUnit(units.getText().trim());
-				linkApp.setWeight(Double.parseDouble(weightbox1.getText()));
-				
-				//for envelopes, go straight to final price screen
-				if(linkApp.getTypePackage().equals("Envelope") || linkApp.getTypePackage().equals("Large Envelope")){
-					linkApp.changeScreen(MainScreen.SCREEN_FINAL,MainScreen.SCREEN_WEIGHT);
-				}
-				else
-					linkApp.changeScreen(MainScreen.SCREEN_ZIP,MainScreen.SCREEN_WEIGHT); //go to zip code screen
 
+				boolean checksPassed=true;
+				Double weight=-1.0;
+				try{
+					weight=Double.parseDouble(weightbox1.getText());
+				}
+				catch(Exception error){
+					checksPassed=false;
+				}
+				if(weight<=0){
+					checksPassed=false;
+				}
+				
+				if(checksPassed){
+					//System.out.println("You are "+e.getActionCommand());
+
+					//when forward button is clicked, read weight and unit
+					linkApp.setWeightUnit(units.getText().trim());
+					linkApp.setWeight(Double.parseDouble(weightbox1.getText()));
+
+					//for envelopes, go straight to final price screen
+					if(linkApp.getTypePackage().equals("Envelope") || linkApp.getTypePackage().equals("Large Envelope")){
+						linkApp.changeScreen(MainScreen.SCREEN_FINAL,MainScreen.SCREEN_WEIGHT);
+					}
+					else
+						linkApp.changeScreen(MainScreen.SCREEN_ZIP,MainScreen.SCREEN_WEIGHT); //go to zip code screen
+				}
+				else{
+					instructions.setText("<html><font color='#FF0000'>Invalid input.<br>Please check your<br>input and try again.</font></html>");
+				}
 			}//
 		};
-		
+
 		//action listener for backward screens
 		ActionListener clickBackward=new ActionListener(){
 			public void actionPerformed(ActionEvent e){
@@ -122,25 +140,25 @@ public class WeightScreen extends JPanel{
 
 			}
 		};
-		
-		
+
+
 		c.anchor=GridBagConstraints.FIRST_LINE_START;
 		c.gridx=0;
 		c.gridy=1;
 		c.gridwidth=GridBagConstraints.REMAINDER;
 		gridbag.setConstraints(grams, c);
 		add(grams);
-		
+
 		c.gridy=2;
 		gridbag.setConstraints(pounds, c);
 		add(pounds);
-		
+
 		c.gridy=3;
 		gridbag.setConstraints(estimate, c);
 		add(estimate);
-		
-		
-		
+
+
+
 		c.gridx=0;
 		c.gridy=4;
 		c.gridwidth=1;
@@ -150,15 +168,15 @@ public class WeightScreen extends JPanel{
 		weightbox1.setPreferredSize(new Dimension(200,30));
 		gridbag.setConstraints(weightbox1, c);
 		add(weightbox1);
-		
+
 		c.gridx=1;
 		c.gridy=4;
 		c.gridwidth=1;
 		c.anchor=GridBagConstraints.CENTER;
-		
+
 		gridbag.setConstraints(units, c);
 		add(units);
-		
+
 		c.gridy=5;
 		c.gridx=0;
 		c.gridwidth=1;
@@ -167,7 +185,7 @@ public class WeightScreen extends JPanel{
 		JButton back = new JButton("Back");
 		gridbag.setConstraints(back, c);
 		add(back);
-		
+
 		c.gridy=5;
 		c.gridx=0;
 		c.gridwidth=1;
@@ -178,6 +196,6 @@ public class WeightScreen extends JPanel{
 		add(forward);
 		forward.addActionListener(clickForward);
 		back.addActionListener(clickBackward);
-		
+
 	}
 }
