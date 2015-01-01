@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
@@ -43,7 +45,7 @@ public class ZipCode extends JPanel {
 	public ZipCode(MainScreen linkToApp,ArrayList<Integer> previous){
 
 		super();
-
+		
 		setPreviousScreen(previous);
 		linkApp=linkToApp; 
 		setFocusable(true);
@@ -74,6 +76,46 @@ public class ZipCode extends JPanel {
 		
 		add(textFields,BorderLayout.CENTER);
 		add(backForward,BorderLayout.SOUTH);
+		
+		senderZip.addFocusListener(new FocusListener(){
+
+			@Override
+			public void focusGained(FocusEvent arg0) {
+				// TODO Auto-generated method stub
+				if(senderZip.getText().trim().equals("Sender Zip Code")){
+					senderZip.setText("");
+				}
+			}
+
+			@Override
+			public void focusLost(FocusEvent arg0) {
+				// TODO Auto-generated method stub
+				if(senderZip.getText().trim().equals("")){
+					senderZip.setText("Sender Zip Code");
+				}
+			}
+			
+		});
+		
+		recipientZip.addFocusListener(new FocusListener(){
+
+			@Override
+			public void focusGained(FocusEvent arg0) {
+				// TODO Auto-generated method stub
+				if(recipientZip.getText().trim().equals("Recipient Zip Code")){
+					recipientZip.setText("");
+				}
+			}
+
+			@Override
+			public void focusLost(FocusEvent arg0) {
+				// TODO Auto-generated method stub
+				if(recipientZip.getText().trim().equals("")){
+					recipientZip.setText("Recipient Zip Code");
+				}
+			}
+			
+		});
 		
 		System.out.println(linkApp.getTypePackage());
 		//action listener for forward screens 

@@ -114,6 +114,59 @@ public class FinalScreen extends JPanel{
 				pricevar=weight*distance*0.003+3;
 			}
 			
+			//for express shipments, double the price
+			if(linkApp.getShipSpeed()==2){
+				System.out.println("Express speed; doubling price...");
+				pricevar*=2;
+			}
+			
+		}
+		else if(linkApp.getTypePackage().equals("Postcard")){
+			//get the dimensions
+			double length=linkApp.getPackLength();
+			double width=linkApp.getPackWidth();
+			double height=linkApp.getPackHeight();
+			String packUnit=linkApp.getPackUnit();
+			
+			//convert all lengths to inches
+			if(packUnit.equals("Centimeters")){
+				System.out.println("Converting lengths to inches...");
+				length=length/2.54;
+				width=width/2.54;
+				height=height/2.54;
+			}
+			
+			if(length<=6 && width<=4.25){
+				pricevar=0.34;
+			}
+			else{
+				pricevar=0.49;
+			}
+			
+		}
+		else if(linkApp.getTypePackage().equals("Envelope")){
+			double weight=linkApp.getWeight();
+			String weightunit=linkApp.getWeightUnit();
+			//convert weight to pounds if necessary
+			if(weightunit.equals("grams")){
+				System.out.println("Converting grams to pounds...");
+				weight*=0.00220462;
+			}
+			//now convert pounds to ounces
+			weight*=16; //16 ounces per pound
+			
+			/*
+			 * Pricing scheme:
+			 * 49 cents for envelopes below 13 oz
+			 * For every oz over 13, add 21 cents
+			 */
+			if(weight<=13){
+				pricevar=0.49;
+			}
+			else{
+				double weightover=weight-13;
+				pricevar=0.49+weightover*0.21;
+			}
 		}
 
 		finalprice= new JLabel("<html><font size='40'>"+pricevar+"</font></html>");

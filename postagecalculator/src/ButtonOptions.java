@@ -61,7 +61,11 @@ public class ButtonOptions extends JPanel{
 				public void actionPerformed(ActionEvent e){
 					System.out.println("You are "+e.getActionCommand());
 					linkApp.setTypePackage(e.getActionCommand());
-					linkApp.changeScreen(MainScreen.SCREEN_WEIGHT,MainScreen.SCREEN_HOME);
+					if(e.getActionCommand().equals("Envelope") || e.getActionCommand().equals("Large Envelope")){
+						linkApp.changeScreen(MainScreen.SCREEN_WEIGHT,MainScreen.SCREEN_HOME);
+					}
+					else
+						linkApp.changeScreen(MainScreen.SCREEN_DIM,MainScreen.SCREEN_HOME);
 
 				}//
 			};
