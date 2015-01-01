@@ -18,23 +18,23 @@ public class DimensionScreen extends JPanel {
 	private ButtonGroup bg = new ButtonGroup();
 	private JRadioButton inches = new JRadioButton("Inches");
 	private JRadioButton cm = new JRadioButton("Centimeters");
-	
+	private JLabel instructions = new JLabel("Enter box dimensions:");
 	//link to main screen
 	private MainScreen linkApp;
-	
-//	public static void main (String[] args){
-//		JFrame f = new JFrame("Postage Calc");
-//		f.setContentPane(new DimensionScreen());
-//		f.setDefaultCloseOperation(3);
-//		f.setDefaultLookAndFeelDecorated(true);
-//		f.pack();
-//		f.setSize(new Dimension(400,600));
-//		
-//		f.setVisible(true);
-//	}
-	
+
+	//	public static void main (String[] args){
+	//		JFrame f = new JFrame("Postage Calc");
+	//		f.setContentPane(new DimensionScreen());
+	//		f.setDefaultCloseOperation(3);
+	//		f.setDefaultLookAndFeelDecorated(true);
+	//		f.pack();
+	//		f.setSize(new Dimension(400,600));
+	//		
+	//		f.setVisible(true);
+	//	}
+
 	public DimensionScreen(MainScreen linkToApp){
-		
+
 		linkApp=linkToApp;
 		GridBagLayout gridbag = new GridBagLayout();
 		GridBagConstraints c = new GridBagConstraints();
@@ -42,7 +42,7 @@ public class DimensionScreen extends JPanel {
 		c.gridx=0;
 		c.gridy=0;
 		c.gridwidth=GridBagConstraints.REMAINDER;
-		JLabel instructions = new JLabel("Enter box dimensions:");
+		
 		gridbag.setConstraints(instructions, c);
 		add(instructions);
 
@@ -212,28 +212,50 @@ public class DimensionScreen extends JPanel {
 		gridbag.setConstraints(forward, c);
 		add(forward);
 
-		
+
 		//action listener for forward screens
 		ActionListener clickForward=new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				//System.out.println("You are "+e.getActionCommand());
-				linkApp.setPackHeight(Integer.parseInt(heightbox.getText()));
-				linkApp.setPackWidth(Integer.parseInt(widthbox.getText()));
-				linkApp.setPackLength(Integer.parseInt(lengthbox.getText()));
-				if(unitselection==1)
-					linkApp.setPackUnit("Inches");
-				else if(unitselection==2)
-					linkApp.setPackUnit("Centimeters");
-				if(linkApp.getTypePackage().equals("Postcard"))
-					linkApp.changeScreen(MainScreen.SCREEN_FINAL,MainScreen.SCREEN_DIM);
-				else if(!linkApp.getTypePackage().equals("Package"))
-					linkApp.changeScreen(MainScreen.SCREEN_ZIP,MainScreen.SCREEN_DIM);
-				else
-					linkApp.changeScreen(MainScreen.SCREEN_WEIGHT,MainScreen.SCREEN_DIM);
 
+				boolean checksPassed=true;
+				double h=-1;
+				double l=-1;
+				double w=-1;
+				try{
+					h=Double.parseDouble(heightbox.getText());
+					l=Double.parseDouble(lengthbox.getText());
+					w=Double.parseDouble(widthbox.getText());
+					
+				}
+				catch(Exception error){
+					checksPassed=false;
+				}
+				if(l<0 || w<0 || h<0){
+					checksPassed=false;
+					
+				}
+				if(checksPassed){
+					//System.out.println("You are "+e.getActionCommand());
+					linkApp.setPackHeight(Double.parseDouble(heightbox.getText()));
+					linkApp.setPackWidth(Double.parseDouble(widthbox.getText()));
+					linkApp.setPackLength(Double.parseDouble(lengthbox.getText()));
+					if(unitselection==1)
+						linkApp.setPackUnit("Inches");
+					else if(unitselection==2)
+						linkApp.setPackUnit("Centimeters");
+					if(linkApp.getTypePackage().equals("Postcard"))
+						linkApp.changeScreen(MainScreen.SCREEN_FINAL,MainScreen.SCREEN_DIM);
+					else if(!linkApp.getTypePackage().equals("Package"))
+						linkApp.changeScreen(MainScreen.SCREEN_ZIP,MainScreen.SCREEN_DIM);
+					else
+						linkApp.changeScreen(MainScreen.SCREEN_WEIGHT,MainScreen.SCREEN_DIM);
+				}
+				else{
+				instructions.setText("<html><font color='#FF0000'>Input error.<br>Please check your input <br>and try again.</font></html>");
+				}
 			}//
 		};
-		
+
 		//action listener for backward screens
 		ActionListener clickBackward=new ActionListener(){
 			public void actionPerformed(ActionEvent e){
@@ -242,9 +264,9 @@ public class DimensionScreen extends JPanel {
 
 			}
 		};
-		
+
 		forward.addActionListener(clickForward);
 		back.addActionListener(clickBackward);
-		
+
 	}
 }
