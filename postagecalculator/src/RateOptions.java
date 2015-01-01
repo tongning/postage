@@ -114,7 +114,13 @@ public class RateGroup extends JPanel{
 		//action listener for prioirty rates, both go to DIMENSION SCREEN
 		ActionListener clickPriority=new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				//System.out.println("You are "+e.getActionCommand());
+				System.out.println("You are "+e.getActionCommand());
+				if(e.getActionCommand().equals("Priority Mail")){
+					linkApp.setShipSpeed(1); //set to regular shipping speed
+				}
+				else if(e.getActionCommand().equals("Priority Mail Express")){
+					linkApp.setShipSpeed(2); //set to express shipping speed
+				}
 				linkApp.changeScreen(MainScreen.SCREEN_DIM, MainScreen.SCREEN_RATE);
 
 			}

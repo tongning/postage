@@ -88,10 +88,30 @@ public class FinalScreen extends JPanel{
 			//estimate the distance between zip codes
 			double distance=(double)(Math.abs(endzip-startzip));
 			distance=(distance/99999.0)*2500; //formula to estimate distance based on difference in zip codes
+			//convert weight to pounds if necessary
+			
+			if(weightunit.equals("grams")){
+				System.out.println("Converting grams to pounds...");
+				weight*=0.00220462;
+			}
+			
 			//check if package is considered "large" - any dimension over 12 inches
 			boolean isLarge=false;
 			if(length>12 || width >12 || height>12){
 				isLarge=true;
+			}
+			System.out.println(linkApp.getShipSpeed());
+			/*
+			 * Calculate the price according to following rule:
+			 * 3 dollar base price plus:
+			 * "Large" packages: .5 cents per pound per mile
+			 * Regular packages: .3 cents per pound per mile
+			 */
+			if(isLarge){
+				pricevar=weight*distance*0.005+3;
+			}
+			else{
+				pricevar=weight*distance*0.003+3;
 			}
 			
 		}

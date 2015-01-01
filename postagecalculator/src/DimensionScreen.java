@@ -224,7 +224,10 @@ public class DimensionScreen extends JPanel {
 					linkApp.setPackUnit("Inches");
 				else if(unitselection==2)
 					linkApp.setPackUnit("Centimeters");
-				linkApp.changeScreen(MainScreen.SCREEN_ZIP,MainScreen.SCREEN_DIM);
+				if(!linkApp.getTypePackage().equals("Package"))
+					linkApp.changeScreen(MainScreen.SCREEN_ZIP,MainScreen.SCREEN_DIM);
+				else
+					linkApp.changeScreen(MainScreen.SCREEN_WEIGHT,MainScreen.SCREEN_DIM);
 
 			}//
 		};
