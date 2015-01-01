@@ -209,7 +209,7 @@ public class FinalScreen extends JPanel{
 				pricevar=0.98+weightover*0.21;
 			}
 		}
-
+		pricevar=Math.round(pricevar * 100.0) / 100.0;
 		finalprice= new JLabel("<html><font size='40'>"+pricevar+"</font></html>");
 		gridbag.setConstraints(finalprice, c);
 		add(finalprice);
