@@ -22,7 +22,7 @@ public class FinalScreen extends JPanel{
 	private double pricevar=0.00;
 	private MainScreen linkApp;
 	private ArrayList<Integer> previousS=new ArrayList<Integer>();
-	
+
 	public FinalScreen(MainScreen linkToApp, ArrayList<Integer> previous){
 		previousS=previous;
 		linkApp=linkToApp;
@@ -37,11 +37,11 @@ public class FinalScreen extends JPanel{
 		JLabel instructions = new JLabel("Your price is:");
 		gridbag.setConstraints(instructions, c);
 		add(instructions);
-		
+
 		c.insets=new Insets(0,0,0,0);
-		
-		
-		
+
+
+
 		c.anchor=GridBagConstraints.CENTER;
 		c.gridx=0;
 		c.gridy=1;
@@ -49,30 +49,45 @@ public class FinalScreen extends JPanel{
 		c.insets=new Insets(100,140,50,50);
 		c.gridwidth=GridBagConstraints.REMAINDER;
 		c.fill=GridBagConstraints.BOTH;
-		if(linkApp.getBoxType()==2){
-			if(linkApp.getShipSpeed()==2)
-			pricevar=50.00;
-			else if(linkApp.getShipSpeed()==1)
-			pricevar=40.00;
+
+		System.out.println("Package Type is "+linkApp.getTypePackage());
+
+		if(linkApp.getTypePackage().equals("PackageFlatRate")){
+			if(linkApp.getBoxType()==2){
+				if(linkApp.getShipSpeed()==2)
+					pricevar=50.00;
+				else if(linkApp.getShipSpeed()==1)
+					pricevar=40.00;
+			}
+			else if(linkApp.getBoxType()==1){
+				if(linkApp.getShipSpeed()==2)
+					pricevar=25.00;
+				else if(linkApp.getShipSpeed()==1)
+					pricevar=20.00;
+			}
 		}
-		else if(linkApp.getBoxType()==1){
-			if(linkApp.getShipSpeed()==2)
-			pricevar=25.00;
-			else if(linkApp.getShipSpeed()==1)
-			pricevar=20.00;
+		else if(linkApp.getTypePackage().equals("Package")){   //non-flatrate package
+			//get zip code, weight, dimensions, and units
+			int startzip=linkApp.getZipStart();
+			int endzip=linkApp.getZipEnd();
+			double weight=linkApp.getWeight();
+			String weightunit=linkApp.getWeightUnit();
+			
+			
 		}
+
 		finalprice= new JLabel("<html><font size='40'>"+pricevar+"</font></html>");
 		gridbag.setConstraints(finalprice, c);
 		add(finalprice);
-		
-	
-		
-		
-		
+
+
+
+
+
 		c.insets=new Insets(0,0,0,0);
 		c.weighty=0;
 		c.gridy=2;
-		
+
 		c.gridx=0;
 		c.gridwidth=1;
 		c.anchor=GridBagConstraints.LAST_LINE_START;
@@ -81,8 +96,8 @@ public class FinalScreen extends JPanel{
 		JButton back = new JButton("Back");
 		gridbag.setConstraints(back, c);
 		add(back);
-		
-		
+
+
 		c.insets=new Insets(0,0,0,0);
 		c.gridy=2;
 		c.gridx=1;
@@ -93,7 +108,7 @@ public class FinalScreen extends JPanel{
 		gridbag.setConstraints(forward, c);
 		add(forward);
 
-		
+
 		//action listener for backward screens
 		ActionListener clickBackward=new ActionListener(){
 			public void actionPerformed(ActionEvent e){
@@ -101,20 +116,20 @@ public class FinalScreen extends JPanel{
 
 				ArrayList<Integer> newHold=new ArrayList<Integer>();
 
-					for (int x=0;x<previousS.indexOf(6);x++){
-						newHold.add(previousS.get(x));
-					}
-	
-				
-			//	previousScreen.remove(previousScreen.size()-1);
+				for (int x=0;x<previousS.indexOf(6);x++){
+					newHold.add(previousS.get(x));
+				}
+
+
+				//	previousScreen.remove(previousScreen.size()-1);
 				System.out.println(newHold);
 				linkApp.setTracking(newHold);
-				
+
 				linkApp.changeScreen(previousS.get(previousS.size()-2),MainScreen.SCREEN_FINAL);
 			}
 		};
 		back.addActionListener(clickBackward);
-		
-		
+
+
 	}
 }

@@ -94,6 +94,7 @@ public class RateGroup extends JPanel{
 			public void actionPerformed(ActionEvent e){
 				//System.out.println("You are "+e.getActionCommand());
 				linkApp.setShipSpeed(1);
+				linkApp.setTypePackage("PackageFlatRate");
 				linkApp.changeScreen(MainScreen.SCREEN_BOXSIZE, MainScreen.SCREEN_RATE);
 
 			}
@@ -104,6 +105,7 @@ public class RateGroup extends JPanel{
 			public void actionPerformed(ActionEvent e){
 				//System.out.println("You are "+e.getActionCommand());
 				linkApp.setShipSpeed(2);
+				linkApp.setTypePackage("PackageFlatRate");
 				linkApp.changeScreen(MainScreen.SCREEN_BOXSIZE, MainScreen.SCREEN_RATE);
 
 			}

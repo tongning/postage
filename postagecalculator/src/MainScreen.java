@@ -47,26 +47,26 @@ public class MainScreen extends JPanel{
 	private String typeRate="";
 
 	//package dimensions
-	private int packWidth=0;
-	private int packLength=0;
-	private int packHeight=0;
+	private double packWidth=0;
+	private double packLength=0;
+	private double packHeight=0;
 	
-	public int getPackWidth() {
+	public double getPackWidth() {
 		return packWidth;
 	}
-	public void setPackWidth(int packWidth) {
+	public void setPackWidth(double packWidth) {
 		this.packWidth = packWidth;
 	}
-	public int getPackLength() {
+	public double getPackLength() {
 		return packLength;
 	}
-	public void setPackLength(int packLength) {
+	public void setPackLength(double packLength) {
 		this.packLength = packLength;
 	}
-	public int getPackHeight() {
+	public double getPackHeight() {
 		return packHeight;
 	}
-	public void setPackHeight(int packHeight) {
+	public void setPackHeight(double packHeight) {
 		this.packHeight = packHeight;
 	}
 

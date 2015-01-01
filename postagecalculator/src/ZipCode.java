@@ -75,11 +75,14 @@ public class ZipCode extends JPanel {
 		add(textFields,BorderLayout.CENTER);
 		add(backForward,BorderLayout.SOUTH);
 		
-
+		System.out.println(linkApp.getTypePackage());
 		//action listener for forward screens 
 		ActionListener clickForward=new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				//System.out.println("You are "+e.getActionCommand());
+				
+				
+				//set zip code variables on mainscreen when next is clicked
 				linkApp.setZipStart(Integer.parseInt(senderZip.getText()));
 				linkApp.setZipEnd(Integer.parseInt(recipientZip.getText()));
 				linkApp.changeScreen(MainScreen.SCREEN_FINAL,MainScreen.SCREEN_ZIP);

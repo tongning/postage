@@ -104,7 +104,7 @@ public class WeightScreen extends JPanel{
 				linkApp.setWeightUnit(units.getText().trim());
 				linkApp.setWeight(Double.parseDouble(weightbox1.getText()));
 				
-				linkApp.changeScreen(MainScreen.SCREEN_ZIP,MainScreen.SCREEN_WEIGHT);
+				linkApp.changeScreen(MainScreen.SCREEN_ZIP,MainScreen.SCREEN_WEIGHT); //go to zip code screen
 
 			}//
 		};
