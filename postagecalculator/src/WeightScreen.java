@@ -105,7 +105,7 @@ public class WeightScreen extends JPanel{
 				linkApp.setWeight(Double.parseDouble(weightbox1.getText()));
 				
 				//for envelopes, go straight to final price screen
-				if(linkApp.getTypePackage().equals("Envelope")){
+				if(linkApp.getTypePackage().equals("Envelope") || linkApp.getTypePackage().equals("Large Envelope")){
 					linkApp.changeScreen(MainScreen.SCREEN_FINAL,MainScreen.SCREEN_WEIGHT);
 				}
 				else

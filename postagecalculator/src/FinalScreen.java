@@ -179,6 +179,36 @@ public class FinalScreen extends JPanel{
 				pricevar=0.49+weightover*0.21;
 			}
 		}
+		else if(linkApp.getTypePackage().equals("Large Envelope")){
+			double weight=linkApp.getWeight();
+			String weightunit=linkApp.getWeightUnit();
+			//convert weight to pounds if necessary
+			if(weightunit.equals("grams")){
+				System.out.println("Converting grams to pounds...");
+				weight*=0.00220462;
+			}
+			else if(weightunit.equals("pages")){
+				System.out.println("Converting pages to pounds...");
+				weight*=0.0099208;
+				
+			}
+			//now convert pounds to ounces
+			weight*=16; //16 ounces per pound
+			
+			/*
+			 * Pricing scheme:
+			 * 98 cents for envelopes below 13 oz
+			 * For every oz over 13, add 21 cents
+			 * http://www.stamps.com/usps/postage-rate-increase/
+			 */
+			if(weight<=13){
+				pricevar=0.98;
+			}
+			else{
+				double weightover=weight-13;
+				pricevar=0.98+weightover*0.21;
+			}
+		}
 
 		finalprice= new JLabel("<html><font size='40'>"+pricevar+"</font></html>");
 		gridbag.setConstraints(finalprice, c);
