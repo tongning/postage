@@ -55,15 +55,15 @@ public class FinalScreen extends JPanel{
 		if(linkApp.getTypePackage().equals("PackageFlatRate")){
 			if(linkApp.getBoxType()==2){
 				if(linkApp.getShipSpeed()==2)
-					pricevar=50.00;
+					pricevar=44.95; //express large box
 				else if(linkApp.getShipSpeed()==1)
-					pricevar=40.00;
+					pricevar=17.90; //regular large box
 			}
 			else if(linkApp.getBoxType()==1){
 				if(linkApp.getShipSpeed()==2)
-					pricevar=25.00;
+					pricevar=44.95; //express med box
 				else if(linkApp.getShipSpeed()==1)
-					pricevar=20.00;
+					pricevar=12.65; //regular med box
 			}
 		}
 		else if(linkApp.getTypePackage().equals("Package")){   //non-flatrate package
@@ -85,6 +85,7 @@ public class FinalScreen extends JPanel{
 				width=width/2.54;
 				height=height/2.54;
 			}
+			
 			//estimate the distance between zip codes
 			double distance=(double)(Math.abs(endzip-startzip));
 			distance=(distance/99999.0)*2500; //formula to estimate distance based on difference in zip codes
@@ -93,6 +94,11 @@ public class FinalScreen extends JPanel{
 			if(weightunit.equals("grams")){
 				System.out.println("Converting grams to pounds...");
 				weight*=0.00220462;
+			}
+			else if(weightunit.equals("pages")){
+				System.out.println("Converting pages to pounds...");
+				weight*=0.0099208;
+				
 			}
 			
 			//check if package is considered "large" - any dimension over 12 inches
@@ -151,6 +157,11 @@ public class FinalScreen extends JPanel{
 			if(weightunit.equals("grams")){
 				System.out.println("Converting grams to pounds...");
 				weight*=0.00220462;
+			}
+			else if(weightunit.equals("pages")){
+				System.out.println("Converting pages to pounds...");
+				weight*=0.0099208;
+				
 			}
 			//now convert pounds to ounces
 			weight*=16; //16 ounces per pound

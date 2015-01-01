@@ -105,8 +105,9 @@ public class RateGroup extends JPanel{
 			public void actionPerformed(ActionEvent e){
 				//System.out.println("You are "+e.getActionCommand());
 				linkApp.setShipSpeed(2);
+				linkApp.setBoxType(1);
 				linkApp.setTypePackage("PackageFlatRate");
-				linkApp.changeScreen(MainScreen.SCREEN_BOXSIZE, MainScreen.SCREEN_RATE);
+				linkApp.changeScreen(MainScreen.SCREEN_FINAL, MainScreen.SCREEN_RATE); //there is only one box size for flat rate express, so go straight to final screen
 
 			}
 		};

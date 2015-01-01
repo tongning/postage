@@ -238,7 +238,7 @@ public class DimensionScreen extends JPanel {
 		ActionListener clickBackward=new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				//System.out.println("You are "+e.getActionCommand());
-				linkApp.changeScreen(MainScreen.SCREEN_RATE,MainScreen.SCREEN_DIM);
+				linkApp.changeScreen(MainScreen.SCREEN_HOME,MainScreen.SCREEN_DIM);
 
 			}
 		};
