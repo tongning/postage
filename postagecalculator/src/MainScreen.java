@@ -50,7 +50,13 @@ public class MainScreen extends JPanel{
 	private double packWidth=0;
 	private double packLength=0;
 	private double packHeight=0;
-	
+	private String packUnit="";
+	public String getPackUnit() {
+		return packUnit;
+	}
+	public void setPackUnit(String packUnit) {
+		this.packUnit = packUnit;
+	}
 	public double getPackWidth() {
 		return packWidth;
 	}

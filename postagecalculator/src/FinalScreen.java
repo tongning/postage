@@ -73,6 +73,26 @@ public class FinalScreen extends JPanel{
 			double weight=linkApp.getWeight();
 			String weightunit=linkApp.getWeightUnit();
 			
+			double length=linkApp.getPackLength();
+			double width=linkApp.getPackWidth();
+			double height=linkApp.getPackHeight();
+			String packUnit=linkApp.getPackUnit();
+			
+			//convert all lengths to inches
+			if(packUnit.equals("Centimeters")){
+				System.out.println("Converting lengths to inches...");
+				length=length/2.54;
+				width=width/2.54;
+				height=height/2.54;
+			}
+			//estimate the distance between zip codes
+			double distance=(double)(Math.abs(endzip-startzip));
+			distance=(distance/99999.0)*2500; //formula to estimate distance based on difference in zip codes
+			//check if package is considered "large" - any dimension over 12 inches
+			boolean isLarge=false;
+			if(length>12 || width >12 || height>12){
+				isLarge=true;
+			}
 			
 		}
 

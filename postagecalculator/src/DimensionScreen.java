@@ -220,6 +220,10 @@ public class DimensionScreen extends JPanel {
 				linkApp.setPackHeight(Integer.parseInt(heightbox.getText()));
 				linkApp.setPackWidth(Integer.parseInt(widthbox.getText()));
 				linkApp.setPackLength(Integer.parseInt(lengthbox.getText()));
+				if(unitselection==1)
+					linkApp.setPackUnit("Inches");
+				else if(unitselection==2)
+					linkApp.setPackUnit("Centimeters");
 				linkApp.changeScreen(MainScreen.SCREEN_ZIP,MainScreen.SCREEN_DIM);
 
 			}//
