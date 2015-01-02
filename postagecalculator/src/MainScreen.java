@@ -17,21 +17,20 @@ import javax.swing.JPanel;
 public class MainScreen extends JPanel{
 	private JLabel header;
 
-	private JLabel instructions;
-	private static int screen=0;
-	/**DIFFRENT SCREEN SWITCHING**/
-	public static final int SCREEN_HOME=0;
-
+	//to keep track of current screen
 	private JPanel currentScreen;
-	private int previousS=0;
+	
+	//to keep track of previous screens
 	private ArrayList<Integer> tracking=new ArrayList<Integer>();
 	
-	public static final int SCREEN_WEIGHT=1;
-	public static final int SCREEN_RATE=2;
-	public static final int SCREEN_DIM=3;
-	public static final int SCREEN_ZIP=4;
-	public static final int SCREEN_BOXSIZE=5;
-	public static final int SCREEN_FINAL=6;
+	/**SCREEN FINAL INTS**/
+	public static final int SCREEN_HOME=0; //home screen which has the button options
+	public static final int SCREEN_WEIGHT=1;  //screen which asks for weight of item
+	public static final int SCREEN_RATE=2;  //screen for rate speed
+	public static final int SCREEN_DIM=3;  //screen for dimension and sizing of item
+	public static final int SCREEN_ZIP=4;  //screen for start and end zip code
+	public static final int SCREEN_BOXSIZE=5;  //screen for large or medium box size
+	public static final int SCREEN_FINAL=6; //final screen which shows the price
 	
 	/**INSTANCES OF NEW SCREENS**/
 	private JPanel buttonOptions=new ButtonOptions(this);
@@ -51,6 +50,9 @@ public class MainScreen extends JPanel{
 	private double packLength=0;
 	private double packHeight=0;
 	private String packUnit="";
+	
+	/**Series of getters and setters for things that are carried throughout all the screens**/
+	//package units/width/length/height
 	public String getPackUnit() {
 		return packUnit;
 	}
@@ -77,13 +79,15 @@ public class MainScreen extends JPanel{
 	}
 
 
-
+	
 	//postcard/envelope/large envelope weight
 	private double pWeight=0;
 	private String weightUnits="";
 	
+	/**Getters and setters for zip code start and end**/
 	//zipcodes
 	private int zipStart=0;
+	private int zipEnd=0;
 	public int getZipStart() {
 		return zipStart;
 	}
@@ -98,8 +102,6 @@ public class MainScreen extends JPanel{
 	}
 
 
-
-	private int zipEnd=0;
 	
 	//flat rate box size, medium or large
 	//0 is undefined, 1 is medium, 2 is large
@@ -110,6 +112,7 @@ public class MainScreen extends JPanel{
 	//0 is undefined, 1 is regular, 2 is express
 	private int shipSpeed=0;
 	
+	/**GETTERS AND SETTERS for weight units and boxes**/
 	public String getTypePackage(){
 		return typePackage;
 	}
@@ -152,14 +155,6 @@ public class MainScreen extends JPanel{
 		nFrame.pack();
 		nFrame.setSize(new Dimension(400,600));
 		nFrame.setVisible(true);
-		
-//		nFrame.setVisible(false);
-//		JFrame weight=new JFrame();
-//		weight.setSize(new Dimension(400,600));
-//		weight.add(new WeightScreen());
-//		weight.setVisible(true);
-		
-		
 
 	}//end of main
 	
@@ -171,27 +166,35 @@ public class MainScreen extends JPanel{
 		
 		//setting the layout to Border Layout
 		setLayout(new BorderLayout());
+		
 		header=new JLabel("Postage Price Calculator"); //header which will go in the north
 		header.setFont(new Font("Times New Roman",Font.BOLD,24));
-		//jpanel which will hold the button options for types of mail: postcard, envelope, large envelope, package
 	
-
-		
-		
-		add(header,BorderLayout.NORTH);
-		changeScreen(SCREEN_HOME,SCREEN_HOME);
+		add(header,BorderLayout.NORTH); //adds it to the border layout
+		changeScreen(SCREEN_HOME,SCREEN_HOME); //references to the button options
 		
 	}//end of constructor
+	
+	/*
+	 * Setter for tracking
+	 * @param ArrayList<Integer> newT - new arraylist of the ints which tracks the path of the clicking
+	 * @return void
+	 */
 	public void setTracking(ArrayList<Integer> newT){
 		tracking=newT;
 	}
+
 	
-	
-	
+	/*
+	 * Method for changing the screens
+	 * @param int screen, int previous - screen is the screen to change to, and previous is the screen which they just came from
+	 * @return void
+	 */
 	public void changeScreen(int screen, int previous){
 		JPanel newScreen=null;
-		tracking.add(screen);
-		System.out.println("Tracking: "+tracking);
+		tracking.add(screen); //adds it to the array list for tracking
+		//System.out.println("Tracking: "+tracking);
+		
 		//switch statement for different screens
 		switch(screen){
 		case SCREEN_WEIGHT:
@@ -231,11 +234,13 @@ public class MainScreen extends JPanel{
 	//	else if (screen==SCREEN_RATE) newScreen=rate;
 		
 		//newScreen.setBackground(Color.red);
+		
+		//removing the current screen so that the new screen can go on
 		if(currentScreen!=null) remove(currentScreen);
-		add(newScreen,BorderLayout.CENTER);
-	 
+		add(newScreen,BorderLayout.CENTER); //adds the new screen to the center of the border layout
 		newScreen.setVisible(true);
 		validate();
+		
 		currentScreen=newScreen;
 	}
 	
