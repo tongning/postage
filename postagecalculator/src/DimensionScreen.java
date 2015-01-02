@@ -7,6 +7,7 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.ArrayList;
 
 import javax.swing.*;
 
@@ -21,7 +22,7 @@ public class DimensionScreen extends JPanel {
 	private JLabel instructions = new JLabel("Enter box dimensions:");
 	//link to main screen
 	private MainScreen linkApp;
-
+	private ArrayList<Integer> previousS=new ArrayList<Integer>();
 	//	public static void main (String[] args){
 	//		JFrame f = new JFrame("Postage Calc");
 	//		f.setContentPane(new DimensionScreen());
@@ -33,8 +34,8 @@ public class DimensionScreen extends JPanel {
 	//		f.setVisible(true);
 	//	}
 
-	public DimensionScreen(MainScreen linkToApp){
-
+	public DimensionScreen(MainScreen linkToApp, ArrayList<Integer> previous){
+		previousS=previous;
 		linkApp=linkToApp;
 		GridBagLayout gridbag = new GridBagLayout();
 		GridBagConstraints c = new GridBagConstraints();
@@ -260,7 +261,19 @@ public class DimensionScreen extends JPanel {
 		ActionListener clickBackward=new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				//System.out.println("You are "+e.getActionCommand());
-				linkApp.changeScreen(MainScreen.SCREEN_HOME,MainScreen.SCREEN_DIM);
+				
+				ArrayList<Integer> newHold=new ArrayList<Integer>();
+
+				for (int x=0;x<previousS.indexOf(3);x++){
+					newHold.add(previousS.get(x));
+				}
+
+
+				//	previousScreen.remove(previousScreen.size()-1);
+				System.out.println(newHold);
+				linkApp.setTracking(newHold);
+
+				linkApp.changeScreen(previousS.get(previousS.size()-2),MainScreen.SCREEN_FINAL);
 
 			}
 		};

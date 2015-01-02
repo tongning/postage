@@ -38,7 +38,7 @@ public class MainScreen extends JPanel{
 	private JPanel weight = new WeightScreen(this);
 	private JPanel rate=new RateOptions(this);
 	private JPanel zip;
-	private JPanel dim=new DimensionScreen(this);
+	private JPanel dim;
 	private JPanel boxSize=new BoxSize(this);
 	private JPanel finalScreen;
 	
@@ -212,8 +212,9 @@ public class MainScreen extends JPanel{
 			System.out.println("Previous: "+previous);
 			break;
 		case SCREEN_DIM:
+			
+			dim=new DimensionScreen(this, tracking);
 			newScreen=dim;
-			dim=new DimensionScreen(this);
 			break;
 		case SCREEN_BOXSIZE:
 			newScreen=boxSize;
