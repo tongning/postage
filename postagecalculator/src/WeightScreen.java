@@ -10,7 +10,7 @@ public class WeightScreen extends JPanel{
 	private ButtonGroup bg = new ButtonGroup();
 	private JRadioButton grams = new JRadioButton("Grams");
 	private JRadioButton pounds = new JRadioButton("Pounds");
-	private JRadioButton estimate = new JRadioButton("Use SmartEstimate");
+	private JRadioButton estimate = new JRadioButton("Estimate by page count");
 	private JTextField weightbox1=null;
 	private JLabel units = new JLabel("lbs  ");
 	private MainScreen linkApp;
@@ -35,12 +35,12 @@ public class WeightScreen extends JPanel{
 		c.gridx=0;
 		c.gridy=0;
 		c.gridwidth=GridBagConstraints.REMAINDER;
-		
+		c.insets=new Insets(100,0,0,0);
 		gridbag.setConstraints(instructions, c);
 		add(instructions);
 
 
-
+		c.insets=new Insets(0,0,0,0);
 		bg.add(grams);
 		bg.add(pounds);
 		String packtype=linkApp.getTypePackage();
@@ -183,6 +183,7 @@ public class WeightScreen extends JPanel{
 		c.anchor=GridBagConstraints.LAST_LINE_START;
 		c.fill=GridBagConstraints.NONE;
 		JButton back = new JButton("Back");
+		c.insets=new Insets(100,0,0,0);
 		gridbag.setConstraints(back, c);
 		add(back);
 
@@ -191,6 +192,7 @@ public class WeightScreen extends JPanel{
 		c.gridwidth=1;
 		c.anchor=GridBagConstraints.LAST_LINE_END;
 		c.fill=GridBagConstraints.NONE;
+		c.insets=new Insets(250,250,0,0);
 		JButton forward = new JButton("Forward");
 		gridbag.setConstraints(forward, c);
 		add(forward);

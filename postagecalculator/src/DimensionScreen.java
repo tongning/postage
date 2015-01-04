@@ -19,7 +19,8 @@ public class DimensionScreen extends JPanel {
 	private ButtonGroup bg = new ButtonGroup();
 	private JRadioButton inches = new JRadioButton("Inches");
 	private JRadioButton cm = new JRadioButton("Centimeters");
-	private JLabel instructions = new JLabel("Enter box dimensions:");
+	private JLabel instructions = new JLabel("<html>Enter item dimensions.<br>For postcards, enter height '0'.</html>");
+	private JButton forward = new JButton("Forward");
 	//link to main screen
 	private MainScreen linkApp;
 	private ArrayList<Integer> previousS=new ArrayList<Integer>();
@@ -42,8 +43,9 @@ public class DimensionScreen extends JPanel {
 		setLayout(gridbag);
 		c.gridx=0;
 		c.gridy=0;
+		c.anchor=GridBagConstraints.CENTER;
 		c.gridwidth=GridBagConstraints.REMAINDER;
-		
+		//c.insets=new Insets(100,0,0,0);
 		gridbag.setConstraints(instructions, c);
 		add(instructions);
 
@@ -58,10 +60,13 @@ public class DimensionScreen extends JPanel {
 		c.gridx=0;
 		c.gridy=1;
 		c.gridwidth=GridBagConstraints.REMAINDER;
+		c.insets=new Insets(30,90,0,0);
 		gridbag.setConstraints(inches, c);
+		
 		add(inches);
 
 		c.gridy=2;
+		c.insets=new Insets(0,90,0,0);
 		gridbag.setConstraints(cm, c);
 		add(cm);
 
@@ -72,7 +77,8 @@ public class DimensionScreen extends JPanel {
 		c.gridx=0;
 		c.gridy=3;
 		c.gridwidth=1;
-		c.fill=GridBagConstraints.HORIZONTAL;
+		c.anchor=GridBagConstraints.CENTER;
+		c.fill=GridBagConstraints.NONE;
 		c.insets=new Insets(50,0,0,0);
 		String unitstring="";
 		inches.addItemListener(new ItemListener() {
@@ -158,7 +164,8 @@ public class DimensionScreen extends JPanel {
 		c.gridx=0;
 		c.gridy=4;
 		c.gridwidth=1;
-		c.fill=GridBagConstraints.HORIZONTAL;
+		
+		c.fill=GridBagConstraints.NONE;
 		c.insets=new Insets(50,0,0,0);
 
 		widthbox.setPreferredSize(new Dimension(200,30));
@@ -168,7 +175,7 @@ public class DimensionScreen extends JPanel {
 		c.gridx=0;
 		c.gridy=5;
 		c.gridwidth=1;
-		c.fill=GridBagConstraints.HORIZONTAL;
+		c.fill=GridBagConstraints.NONE;
 		c.insets=new Insets(50,0,0,0);
 
 		heightbox.setPreferredSize(new Dimension(200,30));
@@ -209,7 +216,8 @@ public class DimensionScreen extends JPanel {
 		c.gridwidth=1;
 		c.anchor=GridBagConstraints.LAST_LINE_END;
 		c.fill=GridBagConstraints.NONE;
-		JButton forward = new JButton("Forward");
+		
+		c.insets=new Insets(120,300,0,0);
 		gridbag.setConstraints(forward, c);
 		add(forward);
 

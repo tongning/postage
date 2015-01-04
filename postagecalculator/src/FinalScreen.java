@@ -22,7 +22,7 @@ public class FinalScreen extends JPanel{
 	private double pricevar=0.00;
 	private MainScreen linkApp;
 	private ArrayList<Integer> previousS=new ArrayList<Integer>();
-
+	private JButton home = new JButton("Home");
 	public FinalScreen(MainScreen linkToApp, ArrayList<Integer> previous){
 		previousS=previous;
 		linkApp=linkToApp;
@@ -238,9 +238,9 @@ public class FinalScreen extends JPanel{
 		c.gridwidth=1;
 		c.anchor=GridBagConstraints.LAST_LINE_END;
 		c.fill=GridBagConstraints.NONE;
-		JButton forward = new JButton("Forward");
-		gridbag.setConstraints(forward, c);
-		add(forward);
+		
+		gridbag.setConstraints(home, c);
+		add(home);
 
 
 		//action listener for backward screens
@@ -262,8 +262,18 @@ public class FinalScreen extends JPanel{
 				linkApp.changeScreen(previousS.get(previousS.size()-2),MainScreen.SCREEN_FINAL);
 			}
 		};
-		back.addActionListener(clickBackward);
+		
+		ActionListener clickHome=new ActionListener(){
+			public void actionPerformed(ActionEvent e){
 
+
+				
+
+				linkApp.changeScreen(MainScreen.SCREEN_HOME,MainScreen.SCREEN_FINAL);
+			}
+		};
+		back.addActionListener(clickBackward);
+		home.addActionListener(clickHome);
 
 	}
 }
