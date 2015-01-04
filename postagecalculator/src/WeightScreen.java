@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 public class WeightScreen extends JPanel{
@@ -12,7 +14,7 @@ public class WeightScreen extends JPanel{
 	private JRadioButton pounds = new JRadioButton("Pounds");
 	private JRadioButton estimate = new JRadioButton("Estimate by page count");
 	private JTextField weightbox1=null;
-	private JLabel units = new JLabel("lbs  ");
+	private JLabel units = new JLabel("<html>lbs&nbsp;&nbsp;&nbsp;&nbsp;</html>");
 	private MainScreen linkApp;
 	private JLabel instructions = new JLabel("Enter weight:");
 	//	public static void main (String[] args){
@@ -40,7 +42,7 @@ public class WeightScreen extends JPanel{
 		add(instructions);
 
 
-		c.insets=new Insets(0,0,0,0);
+		c.insets=new Insets(0,100,0,0);
 		bg.add(grams);
 		bg.add(pounds);
 		String packtype=linkApp.getTypePackage();
@@ -57,7 +59,7 @@ public class WeightScreen extends JPanel{
 				System.out.println("Inches state changed");
 				if(e.getStateChange()==1) {
 					System.out.println("change detected");
-					units.setText("grams  ");
+					units.setText("grams");
 
 				}
 
@@ -73,7 +75,7 @@ public class WeightScreen extends JPanel{
 				System.out.println("Inches state changed");
 				if(e.getStateChange()==1) {
 					System.out.println("change detected");
-					units.setText("lbs   ");
+					units.setText("<html>lbs&nbsp;&nbsp;&nbsp;&nbsp;</html>");
 
 				}
 
@@ -89,7 +91,7 @@ public class WeightScreen extends JPanel{
 				System.out.println("Inches state changed");
 				if(e.getStateChange()==1) {
 					System.out.println("change detected");
-					units.setText("pages  ");
+					units.setText("pages");
 
 				}
 
@@ -158,24 +160,44 @@ public class WeightScreen extends JPanel{
 		add(estimate);
 
 
-
+		
 		c.gridx=0;
 		c.gridy=4;
 		c.gridwidth=1;
-		c.fill=GridBagConstraints.HORIZONTAL;
-		c.insets=new Insets(50,0,0,0);
+		c.fill=GridBagConstraints.NONE;
+		c.insets=new Insets(50,100,0,0);
 		weightbox1 = new JTextField();
 		weightbox1.setPreferredSize(new Dimension(200,30));
+		weightbox1.setMaximumSize(new Dimension(100,30));
 		gridbag.setConstraints(weightbox1, c);
 		add(weightbox1);
+		weightbox1.setText("0.00");
+		weightbox1.addFocusListener(new FocusListener(){
 
-		c.gridx=1;
-		c.gridy=4;
-		c.gridwidth=1;
-		c.anchor=GridBagConstraints.CENTER;
+			@Override
+			public void focusGained(FocusEvent arg0) {
+				// TODO Auto-generated method stub
+				if(weightbox1.getText().trim().equals("0.00")){
+					weightbox1.setText("");
+				}
+			}
 
-		gridbag.setConstraints(units, c);
-		add(units);
+			@Override
+			public void focusLost(FocusEvent arg0) {
+				// TODO Auto-generated method stub
+				if(weightbox1.getText().trim().equals("")){
+					weightbox1.setText("0.00");
+				}
+			}
+			
+		});
+		//c.gridx=1;
+		//c.gridy=4;
+		//c.gridwidth=1;
+	//	c.anchor=GridBagConstraints.CENTER;
+
+	//	gridbag.setConstraints(units, c);
+	//	add(units);
 
 		c.gridy=5;
 		c.gridx=0;
@@ -192,7 +214,7 @@ public class WeightScreen extends JPanel{
 		c.gridwidth=1;
 		c.anchor=GridBagConstraints.LAST_LINE_END;
 		c.fill=GridBagConstraints.NONE;
-		c.insets=new Insets(250,250,0,0);
+		c.insets=new Insets(250,300,0,0);
 		JButton forward = new JButton("Forward");
 		gridbag.setConstraints(forward, c);
 		add(forward);
