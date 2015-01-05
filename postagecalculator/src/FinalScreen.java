@@ -12,18 +12,27 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
-//git test
+
+/**
+ * FinalScreen is a JPanel object used to display the final postage price
+ * calculation. It retrieves all variables entered, calculates the price, and
+ * displays the result.
+ * @author Karina Chang, Anthony Li
+ *
+ */
 public class FinalScreen extends JPanel{
-	private ButtonGroup bg = new ButtonGroup();
-	private JRadioButton grams = new JRadioButton("Grams");
-	private JRadioButton pounds = new JRadioButton("Pounds");
-	private JRadioButton estimate = new JRadioButton("Use SmartEstimate");
-	private JLabel units = new JLabel("lbs  ");
-	private JLabel finalprice= new JLabel("<html><font size='60'>3.56</font></html>");
-	private double pricevar=0.00;
-	private MainScreen linkApp;
-	private ArrayList<Integer> previousS=new ArrayList<Integer>();
-	private JButton home = new JButton("Home");
+	//private ButtonGroup bg = new ButtonGroup();
+	//private JRadioButton grams = new JRadioButton("Grams");
+	//private JRadioButton pounds = new JRadioButton("Pounds");
+	//private JRadioButton estimate = new JRadioButton("Use SmartEstimate");
+	//private JLabel units = new JLabel("lbs  ");
+	
+	private JLabel finalprice= new JLabel("<html><font size='60'>3.56</font></html>"); //JLabel for price display
+	private double pricevar=0.00; //variable to store result
+	private MainScreen linkApp; //allows retrieval of variable values
+	private ArrayList<Integer> previousS=new ArrayList<Integer>(); //back and forward button tracking
+	private JButton home = new JButton("Home"); 
+	private JLabel instructions = new JLabel("Your estimated price is:");
 	public FinalScreen(MainScreen linkToApp, ArrayList<Integer> previous){
 		previousS=previous;
 		linkApp=linkToApp;
@@ -35,7 +44,7 @@ public class FinalScreen extends JPanel{
 		c.anchor=GridBagConstraints.CENTER;
 		c.gridwidth=GridBagConstraints.REMAINDER;
 		c.insets=new Insets(50,0,0,0);
-		JLabel instructions = new JLabel("Your estimated price is:");
+		
 		gridbag.setConstraints(instructions, c);
 		add(instructions);
 
@@ -52,7 +61,7 @@ public class FinalScreen extends JPanel{
 		c.fill=GridBagConstraints.BOTH;
 
 		System.out.println("Package Type is "+linkApp.getTypePackage());
-
+		//calculation algorithm for flat rate options
 		if(linkApp.getTypePackage().equals("PackageFlatRate")){
 			if(linkApp.getBoxType()==2){
 				if(linkApp.getShipSpeed()==2)
@@ -67,6 +76,7 @@ public class FinalScreen extends JPanel{
 					pricevar=12.65; //regular med box
 			}
 		}
+		//calculation algorithm for packages
 		else if(linkApp.getTypePackage().equals("Package")){   //non-flatrate package
 			//get zip code, weight, dimensions, and units
 			int startzip=linkApp.getZipStart();
@@ -128,6 +138,7 @@ public class FinalScreen extends JPanel{
 			}
 			
 		}
+		//calculation for postcards
 		else if(linkApp.getTypePackage().equals("Postcard")){
 			//get the dimensions
 			double length=linkApp.getPackLength();
@@ -151,6 +162,7 @@ public class FinalScreen extends JPanel{
 			}
 			
 		}
+		//calculation for envelopes
 		else if(linkApp.getTypePackage().equals("Envelope")){
 			double weight=linkApp.getWeight();
 			String weightunit=linkApp.getWeightUnit();
@@ -180,6 +192,7 @@ public class FinalScreen extends JPanel{
 				pricevar=0.49+weightover*0.21;
 			}
 		}
+		//calculation for large envelopes
 		else if(linkApp.getTypePackage().equals("Large Envelope")){
 			double weight=linkApp.getWeight();
 			String weightunit=linkApp.getWeightUnit();
@@ -198,24 +211,25 @@ public class FinalScreen extends JPanel{
 			
 			/*
 			 * Pricing scheme:
-			 * 98 cents for envelopes below 13 oz
-			 * For every oz over 13, add 21 cents
+			 * 98 cents for envelopes below 1 oz
+			 * For every oz over 1, add 21 cents
 			 * http://www.stamps.com/usps/postage-rate-increase/
 			 */
-			if(weight<=13){
+			if(weight<=1){
 				pricevar=0.98;
 			}
 			else{
-				double weightover=weight-13;
+				double weightover=weight-1;
 				pricevar=0.98+weightover*0.21;
 			}
 		}
 		pricevar=Math.round(pricevar * 100.0) / 100.0;
 		
-		String priceString=pricevar+"";
+		
 		DecimalFormat df = new DecimalFormat();
 		df.setMaximumFractionDigits(2);
 		df.setMinimumFractionDigits(2);
+		//display the price
 		finalprice= new JLabel("<html><font size='40'>$"+df.format(pricevar)+"</font></html>");
 		gridbag.setConstraints(finalprice, c);
 		add(finalprice);
@@ -268,7 +282,7 @@ public class FinalScreen extends JPanel{
 				linkApp.changeScreen(previousS.get(previousS.size()-2),MainScreen.SCREEN_FINAL);
 			}
 		};
-		
+		//home button action listener
 		ActionListener clickHome=new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 
