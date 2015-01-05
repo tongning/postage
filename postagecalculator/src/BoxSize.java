@@ -6,6 +6,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+/**
+ * BoxSize is a JPanel object that allows box size selection for flat rate shipping
+ * options. For priority mail, the USPS has two flat rate box options. BoxSize has a 
+ * button for each option. Each button is labeled with the box dimensions. 
+ * @author Karina Chang, Anthony Li
+ *
+ */
 public class BoxSize extends JPanel{
 	private JLabel instruction = new JLabel("Choose box size:");
 	private JButton largeboxbutton=new JButton("Large\n23-11/16\" x 11-3/4\" x 3\" OR");
