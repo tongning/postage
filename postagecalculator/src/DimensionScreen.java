@@ -33,9 +33,42 @@ public class DimensionScreen extends JPanel {
 	private ArrayList<Integer> previousS=new ArrayList<Integer>();
 	
 
-	public DimensionScreen(MainScreen linkToApp, ArrayList<Integer> previous){
-		previousS=previous;
+	/**
+	 * Getter to return the int of the previous screen
+	 * @return int of previous screen
+	 */
+	public int getPreviousScreen() {
+		return previousS.get(previousS.size()-2);
+	}
+
+	/**
+	 * Setter to set the arraylist of previous (tracks the path)
+	 * @param previousScreen
+	 */
+	public void setPreviousScreen(ArrayList<Integer> previousScreen) {
+		this.previousS = previousScreen;
+
+	}
+
+	/**
+	 * Setter which sets the main screen link
+	 * @param linkToApp - mainscreen
+	 */
+	public void setLinkToApp(MainScreen linkToApp){
 		linkApp=linkToApp;
+	}
+	/**
+	 * Constructor which sets the grid bag layout and sets the preliminary things such as previous screen and linkApp
+	 * @param linkToApp - links to the main screen
+	 * @param previous - arraylist of tracking
+	 */
+	public DimensionScreen(MainScreen linkToApp, ArrayList<Integer> previous){
+		
+		//setting previous and linkToApp
+		setPreviousScreen(previous);
+		setLinkToApp(linkToApp); 
+		
+		/**GRID BAG LAYOUT**/
 		GridBagLayout gridbag = new GridBagLayout();
 		GridBagConstraints c = new GridBagConstraints();
 		setLayout(gridbag);
@@ -252,21 +285,14 @@ public class DimensionScreen extends JPanel {
 				//due to the adding of the arraylist in main screen, it's necessary to check if there are repeats if the user goes back and forward
 				//multiple times
 				//adds the clean version to the newHold
-				System.out.println("DIM");
-				System.out.println(previousS);
+
 				ArrayList<Integer> newHold=new ArrayList<Integer>();
-//				if (previousS.indexOf(linkApp.SCREEN_DIM)!=previousS.lastIndexOf(linkApp.SCREEN_DIM)){
+
 					for (int x=0;x<previousS.indexOf(linkApp.SCREEN_DIM)-1;x++){
 						newHold.add(previousS.get(x));
 					}
-//				}
-//				else{
-//					newHold=previousS;
-//				}
-				System.out.println(newHold);
 
 				linkApp.setTracking(newHold);
-
 				linkApp.changeScreen(previousS.get(previousS.size()-2),MainScreen.SCREEN_FINAL);
 
 			}

@@ -24,29 +24,29 @@ public class BoxSize extends JPanel{
 	private JButton back=new JButton("Back");
 	
 	private MainScreen linkApp;
-//	public static void main (String[] args){
-//		JFrame f = new JFrame("Postage Calc");
-//		f.setContentPane(new BoxSize());
-//		f.setDefaultCloseOperation(3);
-//		f.setDefaultLookAndFeelDecorated(true);
-//		f.pack();
-//		f.setSize(new Dimension(400,600));
-//		
-//		f.setVisible(true);
-//	}
-	//
+	/**
+	 * Setter which sets the main screen link
+	 * @param linkToApp - mainscreen
+	 */
+	public void setLinkToApp(MainScreen linkToApp){
+		linkApp=linkToApp;
+	}
 	
-
-
+	/**
+	 * Constructor which sets up the link to the Main Screen and grid bag layout 
+	 * @param linkToApp
+	 */
 	public BoxSize(MainScreen linkToApp) {
 		setVisible(true);
-		linkApp=linkToApp;
+		//setting linkToAPp
+		setLinkToApp(linkToApp);
+		
+		/**GRID BAG LAYOUT**/
 		largeboxbutton.setText("<html><font size=\"6\"><center>Large</center></font><br>23-11/16\" x 11-3/4\" x 3\" <br><center>OR</center><center>12\" x 12\" x 5-1/2\"</center></html>");
 		medboxbutton.setText("<html><font size=\"6\"><center>Medium</center></font><br>13-5/8\" x 11-7/8\" x 3-3/8\" <br><center>OR</center><center>11\" x 8-1/2\" x 5-1/2\"</center></html>");
 		GridBagLayout gridbag=new GridBagLayout();
 		GridBagConstraints c = new GridBagConstraints();
 		setLayout(gridbag);
-		
 		
 		c.gridx=0;
 		c.gridy=0;

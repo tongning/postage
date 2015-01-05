@@ -21,17 +21,51 @@ import javax.swing.JRadioButton;
  *
  */
 public class FinalScreen extends JPanel{
-	
-	
 	private JLabel finalprice= new JLabel("<html><font size='60'>3.56</font></html>"); //JLabel for price display
 	private double pricevar=0.00; //variable to store result
 	private MainScreen linkApp; //allows retrieval of variable values
 	private ArrayList<Integer> previousS=new ArrayList<Integer>(); //back and forward button tracking
 	private JButton home = new JButton("Home"); 
+	private JButton back= new JButton("Back");
 	private JLabel instructions = new JLabel("Your estimated price is:");
-	public FinalScreen(MainScreen linkToApp, ArrayList<Integer> previous){
-		previousS=previous;
+	
+	
+
+	/**
+	 * Getter to return the int of the previous screen
+	 * @return int of previous screen
+	 */
+	public int getPreviousScreen() {
+		return previousS.get(previousS.size()-2);
+	}
+
+	/**
+	 * Setter to set the arraylist of previous (tracks the path)
+	 * @param previousScreen
+	 */
+	public void setPreviousScreen(ArrayList<Integer> previousScreen) {
+		this.previousS = previousScreen;
+
+	}
+
+	/**
+	 * Setter which sets the main screen link
+	 * @param linkToApp - mainscreen
+	 */
+	public void setLinkToApp(MainScreen linkToApp){
 		linkApp=linkToApp;
+	}
+	/**
+	 * Constructor which sets the grid bag layout and sets the preliminary things such as previous screen and linkApp
+	 * @param linkToApp - links to the main screen
+	 * @param previous - arraylist of tracking
+	 */
+	public FinalScreen(MainScreen linkToApp, ArrayList<Integer> previous){
+		//setting previous and linkToApp
+		setPreviousScreen(previous);
+		setLinkToApp(linkToApp);
+		
+		/**GRID BAG LAYOUT**/
 		GridBagLayout gridbag = new GridBagLayout();
 		GridBagConstraints c = new GridBagConstraints();
 		setLayout(gridbag);
@@ -46,8 +80,6 @@ public class FinalScreen extends JPanel{
 
 		c.insets=new Insets(0,0,0,0);
 
-
-
 		c.anchor=GridBagConstraints.CENTER;
 		c.gridx=0;
 		c.gridy=1;
@@ -56,7 +88,7 @@ public class FinalScreen extends JPanel{
 		c.gridwidth=GridBagConstraints.REMAINDER;
 		c.fill=GridBagConstraints.BOTH;
 
-		System.out.println("Package Type is "+linkApp.getTypePackage());
+		//System.out.println("Package Type is "+linkApp.getTypePackage());
 		//calculation algorithm for flat rate options
 		if(linkApp.getTypePackage().equals("PackageFlatRate")){
 			if(linkApp.getBoxType()==2){
@@ -225,13 +257,11 @@ public class FinalScreen extends JPanel{
 		DecimalFormat df = new DecimalFormat();
 		df.setMaximumFractionDigits(2);
 		df.setMinimumFractionDigits(2);
+		
 		//display the price
 		finalprice= new JLabel("<html><font size='40'>$"+df.format(pricevar)+"</font></html>");
 		gridbag.setConstraints(finalprice, c);
 		add(finalprice);
-
-
-
 
 
 		c.insets=new Insets(0,0,0,0);
@@ -243,7 +273,8 @@ public class FinalScreen extends JPanel{
 		c.anchor=GridBagConstraints.LAST_LINE_START;
 		c.fill=GridBagConstraints.NONE;
 		c.insets=new Insets(0,0,0,200);
-		JButton back = new JButton("Back");
+		//creating back button
+		back = new JButton("Back");
 		gridbag.setConstraints(back, c);
 		add(back);
 
@@ -254,7 +285,7 @@ public class FinalScreen extends JPanel{
 		c.gridwidth=1;
 		c.anchor=GridBagConstraints.LAST_LINE_END;
 		c.fill=GridBagConstraints.NONE;
-		
+		//home button
 		gridbag.setConstraints(home, c);
 		add(home);
 
@@ -262,7 +293,9 @@ public class FinalScreen extends JPanel{
 		//action listener for backward screens
 		ActionListener clickBackward=new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-
+				//due to the adding of the arraylist in main screen, it's necessary to check if there are repeats if the user goes back and forward
+				//multiple times
+				//adds the clean version to the newHold
 
 				ArrayList<Integer> newHold=new ArrayList<Integer>();
 
@@ -270,20 +303,13 @@ public class FinalScreen extends JPanel{
 					newHold.add(previousS.get(x));
 				}
 
-
-				//	previousScreen.remove(previousScreen.size()-1);
-				System.out.println(newHold);
 				linkApp.setTracking(newHold);
-
-				linkApp.changeScreen(previousS.get(previousS.size()-2),MainScreen.SCREEN_FINAL);
+				linkApp.changeScreen(getPreviousScreen(),MainScreen.SCREEN_FINAL);
 			}
 		};
 		//home button action listener
 		ActionListener clickHome=new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-
-
-				
 
 				linkApp.changeScreen(MainScreen.SCREEN_HOME,MainScreen.SCREEN_FINAL);
 			}

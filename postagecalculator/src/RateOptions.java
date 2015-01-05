@@ -27,12 +27,28 @@ public class RateOptions extends JPanel{
 	//for back and forward buttons
 	private JPanel backForward;
 	private JButton back;
-	private JButton forward;
+	//private JButton forward;
+	
+	/**
+	 * Setter which sets the main screen link
+	 * @param linkToApp - mainscreen
+	 */
+	public void setLinkToApp(MainScreen linkToApp){
+		linkApp=linkToApp;
+	}
+	
+	
+	/**
+	 * Constructor which sets up the rate options, links to the main screen, as well as border layout
+	 * @param linkToApp
+	 */
 public RateOptions(MainScreen linkToApp) {
 	super();
-	linkApp=linkToApp;
+	setLinkToApp(linkToApp);
 	setFocusable(true);
 	setVisible(true);
+	
+	/**BORDER LAYOUT**/
 	setLayout(new BorderLayout());
 	
 	instructions=new JLabel("Select a rate:  ");
@@ -42,9 +58,9 @@ public RateOptions(MainScreen linkToApp) {
 	backForward=new JPanel();
 	backForward.setLayout(new BoxLayout(backForward,BoxLayout.LINE_AXIS));
 	back=new JButton("Back");
-	//forward=new JButton("Forward");
+
 	backForward.add(back);
-	//backForward.add(forward);
+
 	
 	/**ONLY NEED A BACK BUTTON**/
 	//action listener for backward screens
