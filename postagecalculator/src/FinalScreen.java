@@ -160,7 +160,7 @@ public class FinalScreen extends JPanel{
 			}
 			else if(weightunit.equals("pages")){
 				System.out.println("Converting pages to pounds...");
-				weight*=0.0099208;
+				weight*=0.0104167;
 				
 			}
 			//now convert pounds to ounces
@@ -168,14 +168,14 @@ public class FinalScreen extends JPanel{
 			
 			/*
 			 * Pricing scheme:
-			 * 49 cents for envelopes below 13 oz
-			 * For every oz over 13, add 21 cents
+			 * 49 cents for envelopes below 1 oz
+			 * For every oz over 1, add 21 cents
 			 */
-			if(weight<=13){
+			if(weight<=1){
 				pricevar=0.49;
 			}
 			else{
-				double weightover=weight-13;
+				double weightover=weight-1;
 				pricevar=0.49+weightover*0.21;
 			}
 		}
@@ -189,11 +189,11 @@ public class FinalScreen extends JPanel{
 			}
 			else if(weightunit.equals("pages")){
 				System.out.println("Converting pages to pounds...");
-				weight*=0.0099208;
+				weight*=0.0104167;
 				
 			}
 			//now convert pounds to ounces
-			weight*=16; //16 ounces per pound
+			weight*=16.0; //16 ounces per pound
 			
 			/*
 			 * Pricing scheme:
