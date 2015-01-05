@@ -14,7 +14,7 @@ import javax.swing.*;
 /**
  * DimensionScreen is a JPanel object that allows entry of package dimensions.
  * It has three JTextFields for width, length, and height, as well as JRadioButtons
- * for unit selection (inches, centimeters, or page count).
+ * for unit selection (inches or centimeters).
  * @author Karina Chang, Anthony Li
  *
  */

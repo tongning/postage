@@ -21,11 +21,7 @@ import javax.swing.JRadioButton;
  *
  */
 public class FinalScreen extends JPanel{
-	//private ButtonGroup bg = new ButtonGroup();
-	//private JRadioButton grams = new JRadioButton("Grams");
-	//private JRadioButton pounds = new JRadioButton("Pounds");
-	//private JRadioButton estimate = new JRadioButton("Use SmartEstimate");
-	//private JLabel units = new JLabel("lbs  ");
+	
 	
 	private JLabel finalprice= new JLabel("<html><font size='60'>3.56</font></html>"); //JLabel for price display
 	private double pricevar=0.00; //variable to store result

@@ -9,13 +9,20 @@ import java.awt.event.FocusListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
+/**
+ * WeightScreen is a JPanel object that allows entry of the weight
+ * of a package. It has one JTextField for user input, as well as JRadioButtons
+ * for unit selection (grams, pounds, or page count).
+ * @author Karina Chang, Anthony Li
+ *
+ */
 public class WeightScreen extends JPanel{
 	private ButtonGroup bg = new ButtonGroup();
 	private JRadioButton grams = new JRadioButton("Grams");
 	private JRadioButton pounds = new JRadioButton("Pounds");
 	private JRadioButton estimate = new JRadioButton("Estimate by page count");
 	private JTextField weightbox1=null;
-	private JLabel units = new JLabel("<html>lbs&nbsp;&nbsp;&nbsp;&nbsp;</html>");
+	private JLabel units = new JLabel("lbs");
 	private MainScreen linkApp;
 	private JLabel instructions = new JLabel("Enter weight:");
 	private ArrayList<Integer> previousScreen=new ArrayList<Integer>();
@@ -77,7 +84,7 @@ public class WeightScreen extends JPanel{
 				System.out.println("Inches state changed");
 				if(e.getStateChange()==1) {
 					System.out.println("change detected");
-					units.setText("<html>lbs&nbsp;&nbsp;&nbsp;&nbsp;</html>");
+					units.setText("lbs");
 
 				}
 
