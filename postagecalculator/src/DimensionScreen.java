@@ -271,9 +271,13 @@ public class DimensionScreen extends JPanel {
 				//System.out.println("You are "+e.getActionCommand());
 				
 				ArrayList<Integer> newHold=new ArrayList<Integer>();
-
+				if (previousS.contains(3)){
 				for (int x=0;x<previousS.indexOf(3);x++){
 					newHold.add(previousS.get(x));
+				}
+				}
+				else{
+					newHold=previousS;
 				}
 
 

@@ -153,7 +153,7 @@ public class ZipCode extends JPanel {
 				//System.out.println("You are "+e.getActionCommand());
 
 
-				System.out.println(previousScreen);
+				//System.out.println(previousScreen);
 				ArrayList<Integer> newHold=new ArrayList<Integer>();
 				if (previousScreen.indexOf(4)!=previousScreen.lastIndexOf(4)){
 					for (int x=0;x<previousScreen.indexOf(4);x++){
@@ -162,7 +162,7 @@ public class ZipCode extends JPanel {
 
 				}
 				//	previousScreen.remove(previousScreen.size()-1);
-				System.out.println(newHold);
+			//	System.out.println(newHold);
 				linkApp.setTracking(newHold);
 
 				linkApp.changeScreen(getPreviousScreen(),MainScreen.SCREEN_ZIP);

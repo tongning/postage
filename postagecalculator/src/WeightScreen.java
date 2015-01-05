@@ -8,6 +8,7 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.ArrayList;
 public class WeightScreen extends JPanel{
 	private ButtonGroup bg = new ButtonGroup();
 	private JRadioButton grams = new JRadioButton("Grams");
@@ -17,18 +18,19 @@ public class WeightScreen extends JPanel{
 	private JLabel units = new JLabel("<html>lbs&nbsp;&nbsp;&nbsp;&nbsp;</html>");
 	private MainScreen linkApp;
 	private JLabel instructions = new JLabel("Enter weight:");
-	//	public static void main (String[] args){
-	//		JFrame f = new JFrame("Postage Calc");
-	//		f.setContentPane(new WeightScreen());
-	//		f.setDefaultCloseOperation(3);
-	//		f.setDefaultLookAndFeelDecorated(true);
-	//		f.pack();
-	//		f.setSize(new Dimension(400,600));
-	//		
-	//		f.setVisible(true);
-	//	}
+	private ArrayList<Integer> previousScreen=new ArrayList<Integer>();
 
-	public WeightScreen(MainScreen linkToApp){
+	public int getPreviousScreen() {
+		return previousScreen.get(previousScreen.size()-2);
+	}
+
+	public void setPreviousScreen(ArrayList<Integer> previousScreen) {
+		this.previousScreen = previousScreen;
+
+	}
+
+	public WeightScreen(MainScreen linkToApp, ArrayList<Integer> previous){
+		setPreviousScreen(previous);
 		linkApp=linkToApp;
 		setVisible(true);
 		GridBagLayout gridbag = new GridBagLayout();
@@ -137,8 +139,21 @@ public class WeightScreen extends JPanel{
 		//action listener for backward screens
 		ActionListener clickBackward=new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				//System.out.println("You are "+e.getActionCommand());
-				linkApp.changeScreen(MainScreen.SCREEN_HOME,MainScreen.SCREEN_WEIGHT);
+				ArrayList<Integer> newHold=new ArrayList<Integer>();
+				if (previousScreen.indexOf(1)!=previousScreen.lastIndexOf(1)){
+					for (int x=0;x<previousScreen.indexOf(1);x++){
+						newHold.add(previousScreen.get(x));
+					}
+
+				}
+				else{
+					newHold=previousScreen;
+				}
+				//	previousScreen.remove(previousScreen.size()-1);
+			System.out.println(newHold);
+				linkApp.setTracking(newHold);
+
+				linkApp.changeScreen(getPreviousScreen(),MainScreen.SCREEN_ZIP);
 
 			}
 		};

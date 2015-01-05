@@ -59,7 +59,7 @@ public class ButtonOptions extends JPanel{
 			//action listener for postcard, envelope, and large Envelope because they all go to the same following screen
 			ActionListener clickPostcard=new ActionListener(){
 				public void actionPerformed(ActionEvent e){
-					System.out.println("You are "+e.getActionCommand());
+					//System.out.println("You are "+e.getActionCommand());
 					linkApp.setTypePackage(e.getActionCommand());
 					if(e.getActionCommand().equals("Envelope") || e.getActionCommand().equals("Large Envelope")){
 						linkApp.changeScreen(MainScreen.SCREEN_WEIGHT,MainScreen.SCREEN_HOME);
@@ -73,7 +73,7 @@ public class ButtonOptions extends JPanel{
 			//action listener for package
 			ActionListener clickPack=new ActionListener(){
 				public void actionPerformed(ActionEvent e){
-					System.out.println("You are "+e.getActionCommand());
+					//System.out.println("You are "+e.getActionCommand());
 					linkApp.setTypePackage(e.getActionCommand());
 					linkApp.changeScreen(MainScreen.SCREEN_RATE,MainScreen.SCREEN_HOME);
 

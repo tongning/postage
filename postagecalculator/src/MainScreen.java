@@ -34,7 +34,7 @@ public class MainScreen extends JPanel{
 	
 	/**INSTANCES OF NEW SCREENS**/
 	private JPanel buttonOptions=new ButtonOptions(this);
-	private JPanel weight = new WeightScreen(this);
+	private JPanel weight;
 	private JPanel rate=new RateOptions(this);
 	private JPanel zip;
 	private JPanel dim;
@@ -198,8 +198,9 @@ public class MainScreen extends JPanel{
 		//switch statement for different screens
 		switch(screen){
 		case SCREEN_WEIGHT:
+			weight=new WeightScreen(this,tracking);
 			newScreen=weight;
-			weight=new WeightScreen(this);
+		
 			break;
 		case SCREEN_HOME:
 			newScreen=buttonOptions;
