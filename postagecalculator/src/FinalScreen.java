@@ -4,6 +4,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import javax.swing.ButtonGroup;
@@ -34,7 +35,7 @@ public class FinalScreen extends JPanel{
 		c.anchor=GridBagConstraints.CENTER;
 		c.gridwidth=GridBagConstraints.REMAINDER;
 		c.insets=new Insets(50,0,0,0);
-		JLabel instructions = new JLabel("Your price is:");
+		JLabel instructions = new JLabel("Your estimated price is:");
 		gridbag.setConstraints(instructions, c);
 		add(instructions);
 
@@ -46,7 +47,7 @@ public class FinalScreen extends JPanel{
 		c.gridx=0;
 		c.gridy=1;
 		c.weighty=30;
-		c.insets=new Insets(100,140,50,50);
+		c.insets=new Insets(100,110,50,50);
 		c.gridwidth=GridBagConstraints.REMAINDER;
 		c.fill=GridBagConstraints.BOTH;
 
@@ -210,7 +211,12 @@ public class FinalScreen extends JPanel{
 			}
 		}
 		pricevar=Math.round(pricevar * 100.0) / 100.0;
-		finalprice= new JLabel("<html><font size='40'>"+pricevar+"</font></html>");
+		
+		String priceString=pricevar+"";
+		DecimalFormat df = new DecimalFormat();
+		df.setMaximumFractionDigits(2);
+		df.setMinimumFractionDigits(2);
+		finalprice= new JLabel("<html><font size='40'>$"+df.format(pricevar)+"</font></html>");
 		gridbag.setConstraints(finalprice, c);
 		add(finalprice);
 
