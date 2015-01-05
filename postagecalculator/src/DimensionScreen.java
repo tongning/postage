@@ -11,8 +11,15 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 
+/**
+ * DimensionScreen is a JPanel object that allows entry of package dimensions.
+ * It has three JTextFields for width, length, and height, as well as JRadioButtons
+ * for unit selection (inches, centimeters, or page count).
+ * @author Karina Chang, Anthony Li
+ *
+ */
 public class DimensionScreen extends JPanel {
-	private int unitselection=1;
+	private int unitselection=1; //variable used to keep track of which unit is selected
 	private JTextField widthbox = new JTextField("Width (inches)");
 	private JTextField heightbox = new JTextField("Height (inches)");
 	private JTextField lengthbox = new JTextField("Length (inches)");
@@ -24,16 +31,7 @@ public class DimensionScreen extends JPanel {
 	//link to main screen
 	private MainScreen linkApp;
 	private ArrayList<Integer> previousS=new ArrayList<Integer>();
-	//	public static void main (String[] args){
-	//		JFrame f = new JFrame("Postage Calc");
-	//		f.setContentPane(new DimensionScreen());
-	//		f.setDefaultCloseOperation(3);
-	//		f.setDefaultLookAndFeelDecorated(true);
-	//		f.pack();
-	//		f.setSize(new Dimension(400,600));
-	//		
-	//		f.setVisible(true);
-	//	}
+	
 
 	public DimensionScreen(MainScreen linkToApp, ArrayList<Integer> previous){
 		previousS=previous;
@@ -81,6 +79,7 @@ public class DimensionScreen extends JPanel {
 		c.fill=GridBagConstraints.NONE;
 		c.insets=new Insets(50,0,0,0);
 		String unitstring="";
+		//change the help text in the boxes when the unit selection is changed
 		inches.addItemListener(new ItemListener() {
 
 
@@ -103,7 +102,7 @@ public class DimensionScreen extends JPanel {
 			}           
 		});
 
-
+		//clear the help text in the boxes on focus
 		widthbox.addFocusListener(new FocusListener(){
 			@Override
 			public void focusGained(FocusEvent e){
@@ -182,25 +181,6 @@ public class DimensionScreen extends JPanel {
 		gridbag.setConstraints(heightbox, c);
 		add(heightbox);
 
-		/*
-		c.gridx=1;
-		c.gridy=3;
-		c.gridwidth=1;
-		c.anchor=GridBagConstraints.CENTER;
-		JLabel units = new JLabel("unit");
-		gridbag.setConstraints(units, c);
-		add(units);
-
-		c.gridx=1;
-		c.gridy=4;
-		gridbag.setConstraints(units, c);
-		add(units);
-
-		c.gridx=1;
-		c.gridy=5;
-		gridbag.setConstraints(units, c);
-		add(units);
-		 */
 
 		c.gridy=6;
 		c.gridx=0;
@@ -225,7 +205,8 @@ public class DimensionScreen extends JPanel {
 		//action listener for forward screens
 		ActionListener clickForward=new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-
+				//check to make sure inputs are valid before allowing user to continue
+				//numbers >=0
 				boolean checksPassed=true;
 				double h=-1;
 				double l=-1;
