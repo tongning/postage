@@ -3,7 +3,11 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -92,7 +96,19 @@ public class ButtonOptions extends JPanel{
 				}
 			};
 			
-			
+			try{
+				ImageIcon postC=new ImageIcon(ImageIO.read(new File("Postcard.png")));
+				ImageIcon env=new ImageIcon(ImageIO.read(new File("Letter.png")));
+				ImageIcon lEnv=new ImageIcon(ImageIO.read(new File("smallPackage.png")));
+				ImageIcon packI=new ImageIcon(ImageIO.read(new File("bigPackage.png")));
+				postcard.setIcon(postC);
+				envelope.setIcon(env);
+				largeEnvelope.setIcon(lEnv);
+				pack.setIcon(packI);
+			}
+			catch (IOException e){
+				System.exit(-1);
+			}
 			postcard.addActionListener(clickPostcard);
 			envelope.addActionListener(clickPostcard);
 			largeEnvelope.addActionListener(clickPostcard);
