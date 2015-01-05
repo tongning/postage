@@ -13,11 +13,17 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-/*
+
+
+
+/**
+ * ZipCode is a JPanel object that presents two JTextFields for 5-digit
+ * ZIP code entry - one for the sender ZIP code, and one for the recipient
+ * ZIP code. These ZIP codes are used to estimate the distance between the
+ * sender and recipient.
  * @author Karina Chang, Anthony Li
+ *
  */
-
-
 public class ZipCode extends JPanel {
 	private JLabel instructions;
 	private JPanel textFields;

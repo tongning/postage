@@ -12,11 +12,13 @@ import javax.swing.JPanel;
 
 
 
-/*
+/**
+ * RateOptions is a JPanel object that displays buttons for the four package
+ * shipping options: Flat rate express, flat rate regular, priority mail regular, and
+ * priority mail express.
  * @author Karina Chang, Anthony Li
+ *
  */
-
-
 public class RateOptions extends JPanel{
 	private JLabel instructions;
 	private JPanel rGroup;

@@ -9,11 +9,15 @@ import javax.swing.JPanel;
 
 
 
-/*
- * @author Karina Chang, Anthony Li
- * trying to make changes
- */
 
+
+/**
+ * MainScreen is a JPanel object that contains the main() method that launches
+ * the postage calculator app. MainScreen is responsible for keeping track of variables
+ * used throughout the program.
+ * @author Karina Chang, Anthony Li
+ *
+ */
 public class MainScreen extends JPanel{
 	private JLabel header;
 
