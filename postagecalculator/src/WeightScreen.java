@@ -69,8 +69,9 @@ public class WeightScreen extends JPanel{
 		setLayout(gridbag);
 		c.gridx=0;
 		c.gridy=0;
-		c.gridwidth=GridBagConstraints.REMAINDER;
-		c.insets=new Insets(100,0,0,0);
+		c.fill=GridBagConstraints.HORIZONTAL;
+		//c.gridwidth=GridBagConstraints.REMAINDER;
+		c.insets=new Insets(100,100,0,0);
 		gridbag.setConstraints(instructions, c);
 		add(instructions);
 
@@ -202,8 +203,8 @@ public class WeightScreen extends JPanel{
 		c.gridx=0;
 		c.gridy=4;
 		c.gridwidth=1;
-		c.fill=GridBagConstraints.NONE;
-		c.insets=new Insets(50,100,0,0);
+		c.fill=GridBagConstraints.HORIZONTAL;
+		c.insets=new Insets(50,100,0,30);
 		weightbox1 = new JTextField();
 		weightbox1.setPreferredSize(new Dimension(200,30));
 		weightbox1.setMaximumSize(new Dimension(100,30));
@@ -254,7 +255,7 @@ public class WeightScreen extends JPanel{
 		c.gridwidth=1;
 		c.anchor=GridBagConstraints.LAST_LINE_END;
 		c.fill=GridBagConstraints.NONE;
-		c.insets=new Insets(250,300,0,0);
+		c.insets=new Insets(200,300,0,0);
 		JButton forward = new JButton("Forward");
 		gridbag.setConstraints(forward, c);
 		add(forward);
