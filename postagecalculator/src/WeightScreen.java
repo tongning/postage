@@ -27,19 +27,43 @@ public class WeightScreen extends JPanel{
 	private JLabel instructions = new JLabel("Enter weight:");
 	private ArrayList<Integer> previousScreen=new ArrayList<Integer>();
 
+	/**
+	 * Getter to return the int of the previous screen
+	 * @return int of previous screen
+	 */
 	public int getPreviousScreen() {
 		return previousScreen.get(previousScreen.size()-2);
 	}
 
+	/**
+	 * Setter to set the arraylist of previous (tracks the path)
+	 * @param previousScreen
+	 */
 	public void setPreviousScreen(ArrayList<Integer> previousScreen) {
 		this.previousScreen = previousScreen;
 
 	}
 
-	public WeightScreen(MainScreen linkToApp, ArrayList<Integer> previous){
-		setPreviousScreen(previous);
+	/**
+	 * Setter which sets the main screen link
+	 * @param linkToApp - mainscreen
+	 */
+	public void setLinkToApp(MainScreen linkToApp){
 		linkApp=linkToApp;
+	}
+	/**
+	 * Constructor which sets the grid bag layout and sets the preliminary things such as previous screen and linkApp
+	 * @param linkToApp - links to the main screen
+	 * @param previous - arraylist of tracking
+	 */
+	public WeightScreen(MainScreen linkToApp, ArrayList<Integer> previous){
+		//sets the previous screen arraylist and MainScreen linkToApp
+		setPreviousScreen(previous);
+		setLinkToApp(linkToApp);
+		
 		setVisible(true);
+		
+		/**Grid bag layout setting up the screen**/
 		GridBagLayout gridbag = new GridBagLayout();
 		GridBagConstraints c = new GridBagConstraints();
 		setLayout(gridbag);
@@ -58,26 +82,21 @@ public class WeightScreen extends JPanel{
 		System.out.println("br"+packtype);
 		bg.add(estimate);
 
-
+		//Item listener for the grams to determine if the user changed the units
 		grams.addItemListener(new ItemListener() {
-
-
 			@Override
 			public void itemStateChanged(ItemEvent e) {
 				// TODO Auto-generated method stub
-				System.out.println("Inches state changed");
+				//System.out.println("Inches state changed");
 				if(e.getStateChange()==1) {
 					System.out.println("change detected");
 					units.setText("grams");
-
 				}
-
 			}           
 		});
 
+		//Item listener for pounds to determine if the user changed the units
 		pounds.addItemListener(new ItemListener() {
-
-
 			@Override
 			public void itemStateChanged(ItemEvent e) {
 				// TODO Auto-generated method stub
@@ -91,9 +110,8 @@ public class WeightScreen extends JPanel{
 			}           
 		});
 
+		//Item listner to determine if user changed the units for the paper estimate
 		estimate.addItemListener(new ItemListener() {
-
-
 			@Override
 			public void itemStateChanged(ItemEvent e) {
 				// TODO Auto-generated method stub
@@ -107,10 +125,11 @@ public class WeightScreen extends JPanel{
 			}           
 		});
 		pounds.setSelected(true);
+		
 		//action listener for forward screens
 		ActionListener clickForward=new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-
+				//error protection
 				boolean checksPassed=true;
 				Double weight=-1.0;
 				try{
@@ -147,17 +166,20 @@ public class WeightScreen extends JPanel{
 		ActionListener clickBackward=new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				ArrayList<Integer> newHold=new ArrayList<Integer>();
-				if (previousScreen.indexOf(1)!=previousScreen.lastIndexOf(1)){
-					for (int x=0;x<previousScreen.indexOf(1);x++){
+				
+				//due to the adding of the arraylist in main screen, it's necessary to check if there are repeats if the user goes back and forward
+				//multiple times
+				//adds the clean version to the newHold
+				if (previousScreen.indexOf(linkApp.SCREEN_WEIGHT)!=previousScreen.lastIndexOf(linkApp.SCREEN_WEIGHT)){ 
+					for (int x=0;x<previousScreen.indexOf(linkApp.SCREEN_WEIGHT);x++){
 						newHold.add(previousScreen.get(x));
 					}
 
 				}
 				else{
-					newHold=previousScreen;
+					newHold=previousScreen; 
 				}
-				//	previousScreen.remove(previousScreen.size()-1);
-			System.out.println(newHold);
+				
 				linkApp.setTracking(newHold);
 
 				linkApp.changeScreen(getPreviousScreen(),MainScreen.SCREEN_ZIP);
@@ -194,6 +216,8 @@ public class WeightScreen extends JPanel{
 		gridbag.setConstraints(weightbox1, c);
 		add(weightbox1);
 		weightbox1.setText("0.00");
+		
+		//determine where the cursor is on and what to do when it's clicked
 		weightbox1.addFocusListener(new FocusListener(){
 
 			@Override
