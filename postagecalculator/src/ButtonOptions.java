@@ -1,4 +1,4 @@
-//karina changes take 2
+
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -9,6 +9,13 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+/**
+ * ButtonOptions is a JPanel object that displays the name of the app in large characters,
+ * along with four large buttons that present the initial options to the user: Postcard,
+ * Envelope, Large Envelope, and Package. The buttons are contained in a ButtonGroup object.
+ * @author Karina Chang, Anthony Li
+ *
+ */
 public class ButtonOptions extends JPanel{
 	private JLabel instructions;
 	private JPanel bGroup;
@@ -29,6 +36,12 @@ public class ButtonOptions extends JPanel{
 	}
 
 	
+	/**
+	 * ButtonGroup is a JPanel object that displays four large buttons for the
+	 * initial package type selection.
+	 * @author Karina Chang, Anthony Li
+	 *
+	 */
 	public class ButtonGroup extends JPanel{
 		private JButton postcard;
 		private JButton envelope;
