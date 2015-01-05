@@ -156,21 +156,22 @@ public class ZipCode extends JPanel {
 		//action listener for backward screens
 		ActionListener clickBackward=new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				//System.out.println("You are "+e.getActionCommand());
-
-
-				//System.out.println(previousScreen);
+				//due to the adding of the arraylist in main screen, it's necessary to check if there are repeats if the user goes back and forward
+				//multiple times
+				//adds the clean version to the newHold
+				System.out.println("ZIP:");
+				System.out.println(previousScreen);
 				ArrayList<Integer> newHold=new ArrayList<Integer>();
-				if (previousScreen.indexOf(4)!=previousScreen.lastIndexOf(4)){
-					for (int x=0;x<previousScreen.indexOf(4);x++){
+//				if (previousScreen.indexOf(linkApp.SCREEN_ZIP)!=previousScreen.lastIndexOf(linkApp.SCREEN_ZIP)){
+					for (int x=0;x<previousScreen.indexOf(linkApp.SCREEN_ZIP)-1;x++){
 						newHold.add(previousScreen.get(x));
 					}
-
-				}
-				//	previousScreen.remove(previousScreen.size()-1);
-			//	System.out.println(newHold);
-				linkApp.setTracking(newHold);
-
+//				}
+//				else{
+//					newHold=previousScreen;
+//				}
+				System.out.println(newHold);
+				linkApp.setTracking(newHold); //sets the tracking in mainscreen to newHold
 				linkApp.changeScreen(getPreviousScreen(),MainScreen.SCREEN_ZIP);
 			}
 		};

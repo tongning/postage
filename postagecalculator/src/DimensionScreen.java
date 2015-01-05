@@ -249,21 +249,22 @@ public class DimensionScreen extends JPanel {
 		//action listener for backward screens
 		ActionListener clickBackward=new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				//System.out.println("You are "+e.getActionCommand());
-				
+				//due to the adding of the arraylist in main screen, it's necessary to check if there are repeats if the user goes back and forward
+				//multiple times
+				//adds the clean version to the newHold
+				System.out.println("DIM");
+				System.out.println(previousS);
 				ArrayList<Integer> newHold=new ArrayList<Integer>();
-				if (previousS.contains(3)){
-				for (int x=0;x<previousS.indexOf(3);x++){
-					newHold.add(previousS.get(x));
-				}
-				}
-				else{
-					newHold=previousS;
-				}
-
-
-				//	previousScreen.remove(previousScreen.size()-1);
+//				if (previousS.indexOf(linkApp.SCREEN_DIM)!=previousS.lastIndexOf(linkApp.SCREEN_DIM)){
+					for (int x=0;x<previousS.indexOf(linkApp.SCREEN_DIM)-1;x++){
+						newHold.add(previousS.get(x));
+					}
+//				}
+//				else{
+//					newHold=previousS;
+//				}
 				System.out.println(newHold);
+
 				linkApp.setTracking(newHold);
 
 				linkApp.changeScreen(previousS.get(previousS.size()-2),MainScreen.SCREEN_FINAL);

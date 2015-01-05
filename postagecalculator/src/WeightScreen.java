@@ -170,16 +170,18 @@ public class WeightScreen extends JPanel{
 				//due to the adding of the arraylist in main screen, it's necessary to check if there are repeats if the user goes back and forward
 				//multiple times
 				//adds the clean version to the newHold
-				if (previousScreen.indexOf(linkApp.SCREEN_WEIGHT)!=previousScreen.lastIndexOf(linkApp.SCREEN_WEIGHT)){ 
-					for (int x=0;x<previousScreen.indexOf(linkApp.SCREEN_WEIGHT);x++){
+				System.out.println("WEIGHT:");
+				System.out.println(previousScreen);
+//				if (previousScreen.indexOf(linkApp.SCREEN_WEIGHT)!=previousScreen.lastIndexOf(linkApp.SCREEN_WEIGHT)){ 
+					for (int x=0;x<previousScreen.indexOf(linkApp.SCREEN_WEIGHT)-1;x++){
 						newHold.add(previousScreen.get(x));
 					}
-
-				}
-				else{
-					newHold=previousScreen; 
-				}
-				
+//
+//				}
+//				else{
+//					newHold=previousScreen; 
+//				}
+				System.out.println(newHold);
 				linkApp.setTracking(newHold);
 
 				linkApp.changeScreen(getPreviousScreen(),MainScreen.SCREEN_ZIP);

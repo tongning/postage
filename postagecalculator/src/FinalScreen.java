@@ -266,7 +266,7 @@ public class FinalScreen extends JPanel{
 
 				ArrayList<Integer> newHold=new ArrayList<Integer>();
 
-				for (int x=0;x<previousS.indexOf(6);x++){
+				for (int x=0;x<previousS.indexOf(linkApp.SCREEN_FINAL)-1;x++){
 					newHold.add(previousS.get(x));
 				}
 
